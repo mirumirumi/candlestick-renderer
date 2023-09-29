@@ -1,0 +1,21 @@
+{
+    "formatter": {
+        "indentStyle": "space",
+        "lineWidth": 120
+    },
+    "linter": {
+        "rules": {
+            "style": {
+                "noNonNullAssertion": "off"
+            }
+        }
+    },
+    "organizeImports": {
+        "enabled": true
+    },
+    "javascript": {
+        "formatter": {
+            "semicolons": "asNeeded"            
+        }
+    }
+}

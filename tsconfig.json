@@ -1,0 +1,70 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "strict": true,
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "moduleResolution": "Node",
+        "resolveJsonModule": true,
+        "experimentalDecorators": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitReturns": true,
+        "noImplicitOverride": true,
+        "noUncheckedIndexedAccess": true,
+        "preserveConstEnums": true,
+        "lib": [
+            "DOM",
+            "ESNext",
+        ],
+        "types": [
+            "vitest/globals",
+            "vitest/importMeta",
+        ]
+    },
+    "exclude": [
+        "node_modules",
+    ],
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true
+    }
+
+    // Angular default values
+    // "compileOnSave": false,
+    // "compilerOptions": {
+    //     "baseUrl": "./",
+    //     "outDir": "./dist/out-tsc",
+    //     "forceConsistentCasingInFileNames": true,
+    //     "strict": true,
+    //     "noImplicitOverride": true,
+    //     "noPropertyAccessFromIndexSignature": true,
+    //     "noImplicitReturns": true,
+    //     "noFallthroughCasesInSwitch": true,
+    //     "sourceMap": true,
+    //     "declaration": false,
+    //     "downlevelIteration": true,
+    //     "experimentalDecorators": true,
+    //     "moduleResolution": "node",
+    //     "importHelpers": true,
+    //     "target": "ES2022",
+    //     "module": "ES2022",
+    //     "useDefineForClassFields": false,
+    //     "lib": [
+    //         "ES2022",
+    //         "dom"
+    //     ]
+    // },
+    // "angularCompilerOptions": {
+    //     "enableI18nLegacyMessageIdFormat": false,
+    //     "strictInjectionParameters": true,
+    //     "strictInputAccessModifiers": true,
+    //     "strictTemplates": true
+    // }
+}
