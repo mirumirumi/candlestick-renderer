@@ -26,7 +26,19 @@
                         "tsConfig": "tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
                         "assets": [
-                            "src/public"
+                            {
+                                "glob": "favicon*",
+                                "input": "src/public/",
+                                "output": "/"
+                            },
+                            {
+                                "glob": "**/*",
+                                "ignore": [
+                                    "favicon*"
+                                ],
+                                "input": "src/public/",
+                                "output": "/assets/"
+                            }
                         ],
                         "styles": [
                             "src/styles/global.scss"
@@ -35,6 +47,7 @@
                     },
                     "configurations": {
                         "production": {
+                            "baseHref": "/apps/candlestick-renderer/",
                             "budgets": [
                                 {
                                     "type": "initial",
@@ -50,6 +63,7 @@
                             "outputHashing": "all"
                         },
                         "development": {
+                            "baseHref": "/",
                             "buildOptimizer": false,
                             "optimization": false,
                             "vendorChunk": true,
@@ -67,7 +81,8 @@
                             "browserTarget": "candlestick-renderer:build:production"
                         },
                         "development": {
-                            "browserTarget": "candlestick-renderer:build:development"
+                            "browserTarget": "candlestick-renderer:build:development",
+                            "port": 10003
                         }
                     },
                     "defaultConfiguration": "development"

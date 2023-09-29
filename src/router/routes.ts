@@ -1,10 +1,18 @@
 import { NgModule } from "@angular/core"
-import { RouterModule, Routes } from "@angular/router"
+import { RouterModule as Router, Routes } from "@angular/router"
 
-const routes: Routes = []
+import { IndexComponent } from "../pages/index/index.component"
+
+const routes: Routes = [
+  {
+    path: "",
+    component: IndexComponent,
+    title: "Candlestick Renderer",
+  },
+]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  imports: [Router.forRoot(routes)],
+  exports: [Router],
 })
-export class AppRoutingModule {}
+export class RouterModule {}
