@@ -1,0 +1,21 @@
+footer {
+  --color-link: #7f7f7f;
+  padding: 34px 29px 21px;
+  ul {
+    height: 20px;
+    text-align: center;
+    font-size: 0.8em;
+    line-height: 20px;
+    li {
+      display: inline-block;
+      margin: auto 1.3em;
+      a {
+        text-decoration: none;
+      }
+      span {
+        color: var(--color-link);
+        cursor: pointer;
+      }
+    }
+  }
+}

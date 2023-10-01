@@ -1,0 +1,19 @@
+main {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  width: 100%;
+  height: calc(100svh - 100px - 75px);
+  padding: 0 1.3em;
+  > div {
+    border-radius: 9px;
+    background-color: #0b0b13;
+  }
+  .viewer {
+    flex: 3;
+  }
+  .side {
+    flex: 1;
+    max-width: 300px;
+  }
+}

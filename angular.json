@@ -12,14 +12,14 @@
             },
             "root": "",
             "sourceRoot": "src",
-            "prefix": "",
+            "prefix": "c",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
                         "outputPath": "dist",
-                        "index": "src/index.html",
-                        "main": "src/main.ts",
+                        "index": "src/app/index.html",
+                        "main": "src/app/main.ts",
                         "polyfills": [
                             "zone.js"
                         ],
@@ -28,7 +28,7 @@
                         "assets": [
                             {
                                 "glob": "favicon*",
-                                "input": "src/public/",
+                                "input": "src/app/public/",
                                 "output": "/"
                             },
                             {
@@ -36,12 +36,12 @@
                                 "ignore": [
                                     "favicon*"
                                 ],
-                                "input": "src/public/",
+                                "input": "src/app/public/",
                                 "output": "/assets/"
                             }
                         ],
                         "styles": [
-                            "src/styles/global.scss"
+                            "src/app/styles/global.scss"
                         ],
                         "scripts": []
                     },
@@ -103,10 +103,10 @@
                         "tsConfig": "tsconfig.spec.json",
                         "inlineStyleLanguage": "scss",
                         "assets": [
-                            "src/public"
+                            "src/app/public"
                         ],
                         "styles": [
-                            "src/styles/global.scss"
+                            "src/app/styles/global.scss"
                         ],
                         "scripts": []
                     }
