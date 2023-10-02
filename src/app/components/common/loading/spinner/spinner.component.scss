@@ -1,0 +1,38 @@
+svg {
+  --size: 27px;
+  --speed: 2s;
+  --color: v-bind(color);
+  .ring {
+    width: var(--size);
+    height: var(--size);
+    vertical-align: middle;
+    transform-origin: center;
+    animation: rotate var(--speed) linear infinite;
+    circle {
+      fill: none;
+      stroke: var(--color);
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+      animation: stretch calc(var(--speed) * 0.75) ease-in-out infinite;
+    }
+  }
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes stretch {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dashoffset: -124px;
+  }
+}
