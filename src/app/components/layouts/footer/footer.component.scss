@@ -9,12 +9,12 @@ footer {
     li {
       display: inline-block;
       margin: auto 1.3em;
-      a {
-        text-decoration: none;
-      }
       span {
         color: var(--color-link);
         cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

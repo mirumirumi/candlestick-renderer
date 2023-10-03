@@ -10,6 +10,25 @@ import {
   ViewChild,
   ViewContainerRef,
 } from "@angular/core"
+import { SafeHtml } from "@angular/platform-browser"
+
+type SimpleModal = {
+  templateType: "simple"
+  context: {
+    title: string
+    content: string | SafeHtml
+  }
+}
+
+type ConfirmModal = {
+  templateType: "confirm"
+  context: {
+    content: string
+    btnText: string | SafeHtml
+  }
+}
+
+export type Modal = SimpleModal | ConfirmModal
 
 @Component({
   selector: "c-half-modal",
@@ -17,7 +36,7 @@ import {
   styleUrls: ["./half-modal.component.scss"],
 })
 export class HalfModalComponent implements AfterViewInit {
-  @Output() onConfirm = new EventEmitter<void>()
+  @Output() confirm = new EventEmitter<void>()
 
   @ViewChild("container", { read: ViewContainerRef }) container!: ViewContainerRef
   @ViewChild("simple_t", { read: TemplateRef }) simpleTemplate!: TemplateRef<Modal>
@@ -25,7 +44,7 @@ export class HalfModalComponent implements AfterViewInit {
 
   constructor(
     @Inject(DIALOG_DATA) private data: Modal,
-    private dialogRef: DialogRef<HalfModalComponent>,
+    public dialogRef: DialogRef<HalfModalComponent>,
     private cd: ChangeDetectorRef,
   ) {}
 
@@ -43,32 +62,5 @@ export class HalfModalComponent implements AfterViewInit {
     this.container.createEmbeddedView(template, this.data)
 
     this.cd.detectChanges()
-  }
-
-  confirm() {
-    this.onConfirm.emit()
-  }
-
-  close() {
-    this.dialogRef.close()
-  }
-}
-
-export type Modal = SimpleModal | ConfirmModal
-
-type SimpleModal = {
-  templateType: "simple"
-  context: {
-    title: string
-    content: string
-  }
-}
-
-type ConfirmModal = {
-  templateType: "confirm"
-  context: {
-    title: string
-    content: string
-    btnText: string
   }
 }

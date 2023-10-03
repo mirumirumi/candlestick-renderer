@@ -22,7 +22,7 @@
   --color-text-white-hover: #e3e3e3;
   --color-background: #141422;
   --color-primary: #49497b;
-  --color-link: var(--color-gray);
+  --color-link: #9191ff;
   --color-input-focus-border: #686889;
   --color-input-focus-shadow: 0 0 0 0.19rem rgba(#686889, 0.37);
   --width-max-base: 1188px;
@@ -47,16 +47,54 @@ html, body {
     font-size: 16px;
   }
 }
+p {
+  margin-top: 0;
+  margin-bottom: 1.3em;
+  line-height: 1.5;
+}
 p a,
 span a,
 li a,
 table a {
   color: var(--color-link);
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 ul, li {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+.document {
+  h2, h3, h4, h5, h6 {
+    margin-top: 1.65em;
+    margin-bottom: 0.91em;
+  }
+  h2 {
+    font-size: 1.53em;
+  }
+  h3 {
+    font-size: 1.23em;
+  }
+  h4 {
+    font-size: 1.1em;
+  }
+  h5 {
+    font-size: 1.09em;
+  }
+  h6 {
+    font-size: 1.05em;
+  }
+  ul {
+    margin: 1.3em auto;
+    padding-left: 2.3em;
+    li {
+      list-style: disc;
+      margin: 0.3em auto;
+    }
+  }
 }
 img {
   vertical-align: middle;
@@ -68,13 +106,28 @@ input::placeholder,
 textarea::placeholder {
   color: #cccccc;
 }
-input:focus-visible,
-button:focus-visible,
-textarea:focus-visible {
-  outline: none;
-}
+// input:focus-visible,
+// button:focus-visible,
+// textarea:focus-visible {
+//   outline: none;
+// }
 button {
   cursor: pointer;
+  &.reset {
+    margin: 0;
+    padding: 0;
+    color: unset;
+    font: unset;
+    border: none;
+    background: none;
+    appearance: none;
+  }
+  &:has(fa-icon) {
+    position: absolute;
+  }
+}
+fa-icon {
+  position: absolute;
 }
 .display_none {
   display: none;
