@@ -41,7 +41,8 @@
                             }
                         ],
                         "styles": [
-                            "src/app/styles/global.scss"
+                            "src/app/styles/global.scss",
+                            "src/app/styles/modal.scss"
                         ],
                         "scripts": []
                     },

@@ -1,0 +1,29 @@
+<div class="modal_body">
+  <!-- <SvgIcon icon="close" color="#b8b8b8" (click)="close" /> -->
+  <ng-container #container></ng-container>
+</div>
+
+<ng-template #simple_t let-item="context">
+  <div class="title">
+    {{ item.title }}
+  </div>
+  <div class="content">
+    {{ item.content }}
+  </div>
+  <div class="buttons">
+    <c-base-button [type]="'text'" (click)="close()">もどる</c-base-button>
+  </div>
+</ng-template>
+
+<ng-template #confirm_t let-item="context">
+  <div class="title">
+    {{ item.title }}
+  </div>
+  <div class="content">
+    {{ item.content }}
+  </div>
+  <div class="buttons">
+    <c-base-button [type]="'text'" (click)="close()">もどる</c-base-button>
+    <c-base-button [type]="'fill'" (click)="confirm()">{{ item.btnText }}</c-base-button>
+  </div>
+</ng-template>

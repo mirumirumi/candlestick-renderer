@@ -1,4 +1,13 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild, signal } from "@angular/core"
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  ViewChild,
+  signal,
+} from "@angular/core"
 
 @Component({
   selector: "c-base-button",
@@ -14,6 +23,8 @@ export class BaseButtonComponent implements OnInit, AfterViewInit {
   @Input() disabled?: boolean
 
   @ViewChild("button") button!: ElementRef<HTMLButtonElement>
+
+  constructor(private cd: ChangeDetectorRef) {}
 
   width = signal("auto")
   height = signal("auto")
@@ -34,6 +45,8 @@ export class BaseButtonComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.width.set(`${(this.button.nativeElement.offsetWidth + 3).toString()}px`)
     this.height.set(`${(this.button.nativeElement.offsetHeight + 1).toString()}px`)
+
+    this.cd.detectChanges()
   }
 
   onClick(e: Event) {
