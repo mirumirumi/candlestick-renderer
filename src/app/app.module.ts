@@ -1,6 +1,7 @@
 import { DialogModule } from "@angular/cdk/dialog"
 import { NgModule } from "@angular/core"
 import { BrowserModule } from "@angular/platform-browser"
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome"
 import { faTimes } from "@fortawesome/free-solid-svg-icons"
 
@@ -23,7 +24,7 @@ import { RouterModule } from "./router/routes"
     SpinnerComponent,
     HalfModalComponent,
   ],
-  imports: [BrowserModule, RouterModule, FontAwesomeModule, DialogModule],
+  imports: [BrowserModule, BrowserAnimationsModule, RouterModule, FontAwesomeModule, DialogModule],
   providers: [],
   bootstrap: [AppComponent],
 })

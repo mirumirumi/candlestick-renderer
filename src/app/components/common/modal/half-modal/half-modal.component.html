@@ -1,6 +1,6 @@
-<div class="modal_body half_modal">
-  <button class="reset">
-    <fa-icon icon="times" size="xl" (click)="dialogRef.close()"></fa-icon>
+<div class="modal_body half_modal" [@show]="leaving ? 'hidden' : 'shown'" (@show.done)="animationDone($event)">
+  <button class="reset" (click)="close()">
+    <fa-icon icon="times" size="xl"></fa-icon>
   </button>
   <ng-container #container></ng-container>
 </div>
@@ -12,7 +12,7 @@
   <div class="content simple" [innerHTML]="item.content">
   </div>
   <div class="buttons">
-    <c-base-button [type]="'text'" (click)="dialogRef.close()">Dismiss</c-base-button>
+    <c-base-button [type]="'text'" (click)="close()">Dismiss</c-base-button>
   </div>
 </ng-template>
 
@@ -22,7 +22,7 @@
     {{ item.content }}
   </div>
   <div class="buttons">
-    <c-base-button [type]="'text'" (click)="dialogRef.close()">Dismiss</c-base-button>
+    <c-base-button [type]="'text'" (click)="close()">Dismiss</c-base-button>
     <c-base-button [type]="'fill'" (click)="confirm.emit()">{{ item.btnText }}</c-base-button>
   </div>
 </ng-template>

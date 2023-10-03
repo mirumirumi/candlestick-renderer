@@ -23,6 +23,7 @@ export class FooterComponent {
       },
       // panelClass: "",
       autoFocus: "first-header",
+      disableClose: true,
     })
   }
 }
