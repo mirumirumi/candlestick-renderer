@@ -23,6 +23,6 @@
   </div>
   <div class="buttons">
     <c-base-button [type]="'text'" (click)="close()">Dismiss</c-base-button>
-    <c-base-button [type]="'fill'" (click)="confirm.emit()">{{ item.btnText }}</c-base-button>
+    <c-base-button [type]="'fill'" (click)="onConfirm.emit()">{{ item.btnText }}</c-base-button>
   </div>
 </ng-template>

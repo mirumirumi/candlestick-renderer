@@ -5,8 +5,10 @@
   .cdk-overlay-backdrop {
     position: absolute;
     inset: 0;
-    background-color: #00000080;
+    background-color: #000000;
+    opacity: 0.5;
     pointer-events: auto;
+    transition: all 0.09s ease;
   }
   .cdk-global-overlay-wrapper {
     position: absolute;

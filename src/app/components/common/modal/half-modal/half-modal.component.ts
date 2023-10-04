@@ -45,7 +45,8 @@ export type Modal = SimpleModal | ConfirmModal
   ],
 })
 export class HalfModalComponent implements AfterViewInit {
-  @Output() confirm = new EventEmitter<void>()
+  @Output() onClose = new EventEmitter<void>()
+  @Output() onConfirm = new EventEmitter<void>()
 
   @ViewChild("container", { read: ViewContainerRef }) container!: ViewContainerRef
   @ViewChild("simple_t", { read: TemplateRef }) simpleTemplate!: TemplateRef<Modal>
@@ -58,7 +59,9 @@ export class HalfModalComponent implements AfterViewInit {
     private dialogRef: DialogRef<HalfModalComponent>,
     private cd: ChangeDetectorRef,
   ) {
-    this.dialogRef.keydownEvents.subscribe(() => this.close())
+    this.dialogRef.keydownEvents.subscribe((e: KeyboardEvent) => {
+      if (e.key === "Escape") this.close()
+    })
     this.dialogRef.backdropClick.subscribe(() => this.close())
   }
 
@@ -77,13 +80,16 @@ export class HalfModalComponent implements AfterViewInit {
     this.cd.detectChanges()
   }
 
+  // All close events must use this method
+  close() {
+    // The animation will start to close
+    this.leaving = true
+  }
+
   animationDone(event: AnimationEvent) {
     if (event.toState === "hidden") {
       this.dialogRef.close()
+      this.onClose.emit()
     }
-  }
-
-  close() {
-    this.leaving = true
   }
 }

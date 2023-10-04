@@ -1,6 +1,8 @@
-import { Dialog } from "@angular/cdk/dialog"
-import { Component } from "@angular/core"
+import { Dialog, DialogRef } from "@angular/cdk/dialog"
+import { Component, OnInit } from "@angular/core"
 import { DomSanitizer } from "@angular/platform-browser"
+import { ActivatedRoute, Router } from "@angular/router"
+import { take } from "rxjs"
 
 import { HalfModalComponent, Modal } from "../../common/modal/half-modal/half-modal.component"
 
@@ -9,11 +11,32 @@ import { HalfModalComponent, Modal } from "../../common/modal/half-modal/half-mo
   templateUrl: "./footer.component.html",
   styleUrls: ["./footer.component.scss"],
 })
-export class FooterComponent {
-  constructor(private dialog: Dialog, private sanitizer: DomSanitizer) {}
+export class FooterComponent implements OnInit {
+  dialogRef!: DialogRef
+
+  constructor(
+    private dialog: Dialog,
+    private sanitizer: DomSanitizer,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {}
+
+  ngOnInit() {
+    setTimeout(() => {
+      const p = this.route.snapshot.queryParamMap.get("p")
+      if (p === "pp") {
+        this.showPP()
+      }
+    })
+  }
+
+  onClickPP() {
+    this.router.navigate([], { queryParams: { p: "pp" }, queryParamsHandling: "merge" })
+    this.showPP()
+  }
 
   showPP() {
-    this.dialog.open<unknown, Modal>(HalfModalComponent, {
+    this.dialogRef = this.dialog.open<unknown, Modal>(HalfModalComponent, {
       data: {
         templateType: "simple",
         context: {
@@ -25,6 +48,10 @@ export class FooterComponent {
       autoFocus: "first-header",
       disableClose: true,
     })
+
+    this.dialogRef.closed.subscribe(() =>
+      this.router.navigate([], { queryParams: { p: null }, queryParamsHandling: "merge" }),
+    )
   }
 }
 
