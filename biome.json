@@ -15,7 +15,15 @@
     },
     "javascript": {
         "formatter": {
-            "semicolons": "asNeeded"            
+            "semicolons": "asNeeded"
+        },
+        "parser": {
+            "unsafeParameterDecoratorsEnabled": true
+        }
+    },
+    "json": {
+        "parser": {
+            "allowComments": true
         }
     }
 }
