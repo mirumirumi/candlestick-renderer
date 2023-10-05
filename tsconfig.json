@@ -19,15 +19,15 @@
         "preserveConstEnums": true,
         "lib": [
             "DOM",
-            "ESNext",
+            "ESNext"
         ],
         "types": [
             "vitest/globals",
-            "vitest/importMeta",
+            "vitest/importMeta"
         ]
     },
     "exclude": [
-        "node_modules",
+        "node_modules"
     ],
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,

@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Output } from "@angular/core"
 import { Result } from "ts-results"
 
-import { FileData } from "../../common/form/input-file/input-file.component"
+import { ParseFileService } from "../../../services/parse-file.service"
+import { FileData, KLineSource } from "../../../shared/types"
 
 @Component({
   selector: "c-open-file",
@@ -9,28 +10,38 @@ import { FileData } from "../../common/form/input-file/input-file.component"
   styleUrls: ["./open-file.component.scss"],
 })
 export class OpenFileComponent {
-  @Output() onChange = new EventEmitter<File>()
+  @Output() onChange = new EventEmitter<KLineSource>()
 
+  constructor(private parseFileService: ParseFileService) {}
+
+  accept = [".json", ".csv", ".tsv", ".txt", ".rtf", ".log", ".dat"]
   isLoading = false
 
-  // ファイルサイズの上限は？（ローソク足の本数の上限は？
-
-  // 読み込みに全然時間がかからないなら少なくとも読み込み用の画面はいらない
-
-  onFileChange(file: Result<FileData[], Error>) {
+  onFileChange(file: Result<Array<FileData>, Error>) {
     this.isLoading = true
 
     if (file.err) {
       // toast
+      this.isLoading = false
       return
     }
 
-    const data = file.val[0]
-    console.log(data)
+    if (!this.accept.map((ext) => ext.slice(1)).includes(file.val[0]!.ext)) {
+      // toast
+      this.isLoading = false
+      return
+    }
 
-    // なんか色々やる
+    const fileData = file.val[0]!
+    const kline = this.parseFileService.parse(fileData)
 
-    this.onChange.emit()
+    if (kline.err) {
+      // toast
+      this.isLoading = false
+      return
+    }
+
+    this.onChange.emit(kline.val)
     this.isLoading = false
   }
 }

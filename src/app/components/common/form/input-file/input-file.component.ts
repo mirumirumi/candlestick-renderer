@@ -1,11 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core"
 import { Err, Ok, Result } from "ts-results"
 
-export interface FileData {
-  value: string
-  name?: string
-  ext: string
-}
+import { FileData } from "../../../../shared/types"
 
 @Component({
   selector: "c-input-file",
@@ -15,7 +11,7 @@ export class InputFileComponent {
   @Input() accept?: string
   @Input() multiple?: boolean
 
-  @Output() onChange = new EventEmitter<Result<FileData[], Error>>()
+  @Output() onChange = new EventEmitter<Result<Array<FileData>, Error>>()
 
   async onFileChange(e: Event) {
     const input = e.target as HTMLInputElement
