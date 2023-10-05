@@ -2,7 +2,6 @@ import { Dialog, DialogRef } from "@angular/cdk/dialog"
 import { Component, OnInit } from "@angular/core"
 import { DomSanitizer } from "@angular/platform-browser"
 import { ActivatedRoute, Router } from "@angular/router"
-import { take } from "rxjs"
 
 import { HalfModalComponent, Modal } from "../../common/modal/half-modal/half-modal.component"
 

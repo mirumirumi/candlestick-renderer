@@ -26,13 +26,13 @@ button {
 .btn_primary {
   color: var(--color-text-white);
   &:hover {
-    filter: saturate(0.85);
+    filter: brightness(1.13);
   }
 }
 .btn_outline_primary {
   background-color: transparent;
   &:hover {
-    filter: saturate(0.85);
+    filter: brightness(1.13);
   }
 }
 .btn_text_only {

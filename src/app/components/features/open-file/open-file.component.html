@@ -1,0 +1,11 @@
+<div class="root">
+  <img src="/assets/images/open-file.png" alt="" aria-hidden="true" role="presentation">
+  <div class="text">
+    Select a file as candlestick (Kline) data such as JSON, CSV, TSV, and just raw data...
+  </div>
+  <c-input-file accept=".json,.csv,.tsv,.txt" (onChange)="onFileChange($event)">
+    <c-base-button [type]="'fill'" [isSubmitting]="isLoading">
+      Open a file
+    </c-base-button>
+  </c-input-file>
+</div>

@@ -16,7 +16,7 @@ import {
 })
 export class BaseButtonComponent implements OnInit, AfterViewInit {
   @Input({ required: true }) type!: "fill" | "outline" | "text"
-  @Input() isSubmitButton?: boolean
+  @Input() submit?: boolean
   @Input() mainColor?: string
   @Input() spinnerColor?: string
   @Input() isSubmitting?: boolean

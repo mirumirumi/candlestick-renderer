@@ -5,8 +5,4 @@ import { Component } from "@angular/core"
   templateUrl: "./index.component.html",
   styleUrls: ["./index.component.scss"],
 })
-export class IndexComponent {
-  isSubmitting = false
-
-  onClick() {}
-}
+export class IndexComponent {}
