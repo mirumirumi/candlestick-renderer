@@ -1,0 +1,23 @@
+<div class="modal_body base_modal" [@show]="leaving ? 'hidden' : 'shown'" (@show.done)="animationDone($event)">
+  <ng-container #container></ng-container>
+</div>
+
+<ng-template #confirm_t let-item="context">
+  <div class="content confirm">
+    {{ item.content }}
+  </div>
+  <div class="buttons">
+    <c-base-button [type]="'text'" (click)="close()">Cancel</c-base-button>
+    <c-base-button [type]="'fill'" (click)="onConfirm.emit()">{{ item.btnText }}</c-base-button>
+  </div>
+</ng-template>
+
+<ng-template #action_t let-item="context">
+  <div class="content action">
+    {{ item.content }}
+  </div>
+  <div class="buttons">
+    <c-base-button [type]="'text'" (click)="close()">Cancel</c-base-button>
+    <c-base-button [type]="'fill'" (click)="onAction.emit()">{{ item.btnText }}</c-base-button>
+  </div>
+</ng-template>

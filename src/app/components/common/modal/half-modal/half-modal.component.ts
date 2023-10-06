@@ -1,35 +1,7 @@
-import { AnimationEvent, animate, state, style, transition, trigger } from "@angular/animations"
-import { DIALOG_DATA, DialogRef } from "@angular/cdk/dialog"
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Inject,
-  Output,
-  TemplateRef,
-  ViewChild,
-  ViewContainerRef,
-} from "@angular/core"
-import { SafeHtml } from "@angular/platform-browser"
+import { animate, state, style, transition, trigger } from "@angular/animations"
+import { Component } from "@angular/core"
 
-type SimpleModal = {
-  templateType: "simple"
-  context: {
-    title: string
-    content: string | SafeHtml
-  }
-}
-
-type ConfirmModal = {
-  templateType: "confirm"
-  context: {
-    content: string
-    btnText: string | SafeHtml
-  }
-}
-
-export type Modal = SimpleModal | ConfirmModal
+import { ModalBase } from "../modal-base"
 
 @Component({
   selector: "c-half-modal",
@@ -37,59 +9,10 @@ export type Modal = SimpleModal | ConfirmModal
   styleUrls: ["./half-modal.component.scss"],
   animations: [
     trigger("show", [
-      state("shown", style({ opacity: 1, transform: "translateY(0%)" })),
       state("hidden", style({ opacity: 0, transform: "translateY(100%)" })),
       transition(":enter", [style({ opacity: 0, transform: "translateY(100%)" }), animate("0.19s ease")]),
-      transition("shown => hidden", [style({ opacity: 1, transform: "translateY(0%)" }), animate("0.09s ease")]),
+      transition("shown => hidden", animate("0.09s ease")),
     ]),
   ],
 })
-export class HalfModalComponent implements AfterViewInit {
-  @Output() onClose = new EventEmitter<void>()
-  @Output() onConfirm = new EventEmitter<void>()
-
-  @ViewChild("container", { read: ViewContainerRef }) container!: ViewContainerRef
-  @ViewChild("simple_t", { read: TemplateRef }) simpleTemplate!: TemplateRef<Modal>
-  @ViewChild("confirm_t", { read: TemplateRef }) confirmTemplate!: TemplateRef<Modal>
-
-  leaving = false
-
-  constructor(
-    @Inject(DIALOG_DATA) protected data: Modal,
-    protected dialogRef: DialogRef<HalfModalComponent>,
-    protected cd: ChangeDetectorRef,
-  ) {
-    this.dialogRef.keydownEvents.subscribe((e: KeyboardEvent) => {
-      if (e.key === "Escape") this.close()
-    })
-    this.dialogRef.backdropClick.subscribe(() => this.close())
-  }
-
-  ngAfterViewInit() {
-    let template: TemplateRef<Modal>
-    switch (this.data.templateType) {
-      case "simple":
-        template = this.simpleTemplate
-        break
-      case "confirm":
-        template = this.confirmTemplate
-        break
-    }
-    this.container.createEmbeddedView(template, this.data)
-
-    this.cd.detectChanges()
-  }
-
-  // All close events must use this method
-  close() {
-    // The animation will start to close
-    this.leaving = true
-  }
-
-  animationDone(event: AnimationEvent) {
-    if (event.toState === "hidden") {
-      this.dialogRef.close()
-      this.onClose.emit()
-    }
-  }
-}
+export class HalfModalComponent extends ModalBase<HalfModalComponent> {}

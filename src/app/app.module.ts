@@ -9,13 +9,14 @@ import { AppComponent } from "./components/app.component"
 import { BaseButtonComponent } from "./components/common/button/base-button/base-button.component"
 import { InputFileComponent } from "./components/common/form/input-file/input-file.component"
 import { SpinnerComponent } from "./components/common/loading/spinner/spinner.component"
+import { BaseModalComponent } from "./components/common/modal/base-modal/base-modal.component"
 import { HalfModalComponent } from "./components/common/modal/half-modal/half-modal.component"
+import { ChartComponent } from "./components/features/chart/chart.component"
 import { OpenFileComponent } from "./components/features/open-file/open-file.component"
 import { FooterComponent } from "./components/layouts/footer/footer.component"
 import { HeaderComponent } from "./components/layouts/header/header.component"
 import { IndexComponent } from "./pages/index/index.component"
-import { RouterModule } from "./router/routes";
-import { ChartComponent } from './components/features/chart/chart.component'
+import { RouterModule } from "./router/routes"
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ChartComponent } from './components/features/chart/chart.component'
     OpenFileComponent,
     InputFileComponent,
     ChartComponent,
+    BaseModalComponent,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, RouterModule, FontAwesomeModule, DialogModule],
   providers: [],

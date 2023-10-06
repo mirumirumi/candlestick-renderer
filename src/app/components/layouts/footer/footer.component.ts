@@ -3,7 +3,8 @@ import { Component, OnInit } from "@angular/core"
 import { DomSanitizer } from "@angular/platform-browser"
 import { ActivatedRoute, Router } from "@angular/router"
 
-import { HalfModalComponent, Modal } from "../../common/modal/half-modal/half-modal.component"
+import { HalfModalComponent } from "../../common/modal/half-modal/half-modal.component"
+import { ModalType } from "../../common/modal/modal-base"
 
 @Component({
   selector: "c-footer",
@@ -35,7 +36,7 @@ export class FooterComponent implements OnInit {
   }
 
   showPP() {
-    this.dialogRef = this.dialog.open<unknown, Modal>(HalfModalComponent, {
+    this.dialogRef = this.dialog.open<unknown, ModalType>(HalfModalComponent, {
       data: {
         templateType: "simple",
         context: {

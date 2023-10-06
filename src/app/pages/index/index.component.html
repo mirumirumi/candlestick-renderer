@@ -3,7 +3,12 @@
     <div *ngIf="noFile" class="no_file">
       <c-open-file (onChange)="onFileSelect($event)" />
     </div>
-    <c-chart *ngIf="!noFile" [data]="klineSource" />
+    <ng-container *ngIf="!noFile">
+      <c-chart [data]="klineSource" />
+      <button class="reset" (click)="onClose()">
+        <fa-icon icon="times" size="lg" style="color: #aeb0b7;"></fa-icon>
+      </button>
+    </ng-container>
   </div>
   <div class="side">
 

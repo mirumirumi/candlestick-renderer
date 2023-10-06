@@ -15,14 +15,3 @@
     <c-base-button [type]="'text'" (click)="close()">Dismiss</c-base-button>
   </div>
 </ng-template>
-
-<!-- これは通常モーダルへ移行させる -->
-<ng-template #confirm_t let-item="context">
-  <div class="content confiem">
-    {{ item.content }}
-  </div>
-  <div class="buttons">
-    <c-base-button [type]="'text'" (click)="close()">Dismiss</c-base-button>
-    <c-base-button [type]="'fill'" (click)="onConfirm.emit()">{{ item.btnText }}</c-base-button>
-  </div>
-</ng-template>

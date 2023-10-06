@@ -27,8 +27,8 @@
         box-shadow: 1px 3px 5px rgba(#19191c, 0.666);
         border-radius: 7px;
         button {
-          top: 0.9em;
-          right: 2.5em;
+          top: 1.9em;
+          right: 2.3em;
           bottom: auto;
         }
         .title {
@@ -39,8 +39,7 @@
         .content {
           margin: 0.3em auto 0.9em;
           font-size: 0.93em;
-          &.simple {
-          }
+          &.simple {}
           &.confirm {}
           &.action {
             display: flex;
