@@ -33,6 +33,9 @@ export class ChartComponent implements OnInit, OnDestroy {
     const [prePrice, preVol] = this.getPrecisions(this.data)
     this.chart.setPriceVolumePrecision(prePrice, preVol)
 
+    // MAs
+    this.chart.createIndicator({ name: "MA", calcParams: [5, 10, 20] }, false, { id: "candle_pane" })
+
     // Volume pane
     if (this.data[0]!.volume) {
       this.chart.createIndicator({ name: "VOL" }, true, { height: 113 })
