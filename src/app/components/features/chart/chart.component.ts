@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from "@angular/core"
-import { init } from "klinecharts"
+import { Component, Input, OnDestroy, OnInit } from "@angular/core"
+import { Chart, init } from "klinecharts"
+import { debounce } from "throttle-debounce"
 
 import { KLineSource } from "../../../shared/types"
 import style from "./style-config"
@@ -19,17 +20,27 @@ import style from "./style-config"
     `,
   ],
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent implements OnInit, OnDestroy {
   @Input() data!: KLineSource
 
+  chart!: Chart
+  onResize = debounce(300, () => this.chart.resize())
+
   ngOnInit() {
-    const chart = init("chart", style)!
-    chart.setBarSpace(9)
+    this.chart = init("chart", style)!
+    this.chart.setBarSpace(9)
 
     const [prePrice, preVol] = this.getPrecisions(this.data)
-    chart.setPriceVolumePrecision(prePrice, preVol)
+    this.chart.setPriceVolumePrecision(prePrice, preVol)
 
-    chart.applyNewData(this.data)
+    this.chart.applyNewData(this.data)
+
+    // Add event listener for window resizeing
+    window.addEventListener("resize", this.onResize)
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener("resize", this.onResize)
   }
 
   protected getPrecisions(kline: KLineSource): [number, number] {
