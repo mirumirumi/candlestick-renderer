@@ -14,10 +14,10 @@ export class FooterComponent implements OnInit {
   dialogRef!: DialogRef
 
   constructor(
-    private dialog: Dialog,
-    private sanitizer: DomSanitizer,
-    private route: ActivatedRoute,
-    private router: Router,
+    protected dialog: Dialog,
+    protected sanitizer: DomSanitizer,
+    protected route: ActivatedRoute,
+    protected router: Router,
   ) {}
 
   ngOnInit() {

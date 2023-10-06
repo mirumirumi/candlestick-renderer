@@ -24,7 +24,7 @@ export class BaseButtonComponent implements OnInit, AfterViewInit {
 
   @ViewChild("button") button!: ElementRef<HTMLButtonElement>
 
-  constructor(private cd: ChangeDetectorRef) {}
+  constructor(protected cd: ChangeDetectorRef) {}
 
   width = signal("auto")
   height = signal("auto")

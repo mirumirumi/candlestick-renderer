@@ -9,7 +9,7 @@ import { Candle, FileData, KLineSource } from "../shared/types"
   providedIn: "root",
 })
 export class ParseFileService {
-  private synonyms = {
+  protected synonyms = {
     timestamp: ["timestamp", "ts", "unixtime", "datetime", "epoch", "posix", "time"],
     open: ["open", "o"],
     high: ["high", "h"],
@@ -17,7 +17,7 @@ export class ParseFileService {
     close: ["close", "c"],
     volume: ["volume", "v"],
   }
-  private synonymMapping: { [key: string]: string } = {}
+  protected synonymMapping: { [key: string]: string } = {}
 
   parse(file: FileData): Result<KLineSource, ParseError> {
     // json: Match the key against the synonyms
@@ -54,7 +54,7 @@ export class ParseFileService {
     return new Ok(result!)
   }
 
-  private json(value: string): KLineSource {
+  protected json(value: string): KLineSource {
     // Initialize synonym mapping table
     for (const [canonical, aliases] of Object.entries(this.synonyms)) {
       for (const alias of aliases) {
@@ -92,7 +92,7 @@ export class ParseFileService {
     })
   }
 
-  private csv(value: string): Result<KLineSource, Error> {
+  protected csv(value: string): Result<KLineSource, Error> {
     const parsed = Papa.parse(value)
     if (0 < parsed.errors.length) {
       return new Err(Error())
@@ -102,7 +102,7 @@ export class ParseFileService {
     return new Ok(kline)
   }
 
-  private tsv(value: string): Result<KLineSource, Error> {
+  protected tsv(value: string): Result<KLineSource, Error> {
     const parsed = Papa.parse(value, { delimiter: "\t" })
     if (0 < parsed.errors.length) {
       return new Err(Error())
@@ -112,7 +112,7 @@ export class ParseFileService {
     return new Ok(kline)
   }
 
-  private raw(value: string): Result<KLineSource, Error> {
+  protected raw(value: string): Result<KLineSource, Error> {
     const parsed = Papa.parse(value, { delimiter: "," })
     if (0 < parsed.errors.length) {
       return new Err(Error())
@@ -141,11 +141,11 @@ export class ParseFileService {
     return new Ok(kline)
   }
 
-  private normalizeKey(key: string): string {
+  protected normalizeKey(key: string): string {
     return this.synonymMapping[key] || key
   }
 
-  private extractKLineFromParsed(data: Array<Array<string>>): KLineSource {
+  protected extractKLineFromParsed(data: Array<Array<string>>): KLineSource {
     return data
       .filter((row) => 5 <= row.length)
       .map((row) => {

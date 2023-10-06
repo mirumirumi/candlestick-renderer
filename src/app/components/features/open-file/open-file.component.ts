@@ -12,7 +12,7 @@ import { FileData, KLineSource } from "../../../shared/types"
 export class OpenFileComponent {
   @Output() onChange = new EventEmitter<KLineSource>()
 
-  constructor(private parseFileService: ParseFileService) {}
+  constructor(protected parseFileService: ParseFileService) {}
 
   accept = [".json", ".csv", ".tsv", ".txt", ".rtf", ".log", ".dat"]
   isLoading = false

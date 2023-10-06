@@ -55,9 +55,9 @@ export class HalfModalComponent implements AfterViewInit {
   leaving = false
 
   constructor(
-    @Inject(DIALOG_DATA) private data: Modal,
-    private dialogRef: DialogRef<HalfModalComponent>,
-    private cd: ChangeDetectorRef,
+    @Inject(DIALOG_DATA) protected data: Modal,
+    protected dialogRef: DialogRef<HalfModalComponent>,
+    protected cd: ChangeDetectorRef,
   ) {
     this.dialogRef.keydownEvents.subscribe((e: KeyboardEvent) => {
       if (e.key === "Escape") this.close()

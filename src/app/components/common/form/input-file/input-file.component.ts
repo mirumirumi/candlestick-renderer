@@ -49,7 +49,7 @@ export class InputFileComponent {
     this.onChange.emit(new Ok(results))
   }
 
-  private async readFileAsync(file: File): Promise<string> {
+  protected async readFileAsync(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader()
       reader.readAsText(file)
