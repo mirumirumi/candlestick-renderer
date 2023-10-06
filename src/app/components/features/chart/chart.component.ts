@@ -33,6 +33,11 @@ export class ChartComponent implements OnInit, OnDestroy {
     const [prePrice, preVol] = this.getPrecisions(this.data)
     this.chart.setPriceVolumePrecision(prePrice, preVol)
 
+    // Volume pane
+    if (this.data[0]!.volume) {
+      this.chart.createIndicator({ name: "VOL" }, true, { height: 113 })
+    }
+
     this.chart.applyNewData(this.data)
 
     // Add event listener for window resizeing

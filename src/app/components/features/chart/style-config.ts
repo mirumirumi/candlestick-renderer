@@ -1,3 +1,5 @@
+import { Options } from "klinecharts"
+
 export default {
   styles: {
     grid: {
@@ -49,6 +51,26 @@ export default {
         },
       },
     },
+    indicator: {
+      bars: [
+        {
+          upColor: "#20b26cb3",
+          downColor: "#ef454ab3",
+          noChangeColor: "#8e8e8e",
+        },
+      ],
+      lines: [
+        {
+          color: "#f57f17",
+        },
+        {
+          color: "#ffee58",
+        },
+        {
+          color: "#f06292",
+        },
+      ],
+    },
     xAxis: {
       axisLine: {
         color: "#8e8e8e",
@@ -74,6 +96,9 @@ export default {
         length: 3.5,
         color: "#8e8e8e",
       },
+    },
+    separator: {
+      color: "#8e8e8e",
     },
     crosshair: {
       horizontal: {
@@ -106,4 +131,4 @@ export default {
       },
     },
   },
-}
+} as Options
