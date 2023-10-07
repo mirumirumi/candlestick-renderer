@@ -16,7 +16,9 @@ import { OpenFileComponent } from "./components/features/open-file/open-file.com
 import { FooterComponent } from "./components/layouts/footer/footer.component"
 import { HeaderComponent } from "./components/layouts/header/header.component"
 import { IndexComponent } from "./pages/index/index.component"
-import { RouterModule } from "./router/routes"
+import { RouterModule } from "./router/routes";
+import { PreferenceComponent } from './components/features/preference/preference.component';
+import { SwitchComponent } from './components/common/form/switch/switch.component'
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { RouterModule } from "./router/routes"
     InputFileComponent,
     ChartComponent,
     BaseModalComponent,
+    PreferenceComponent,
+    SwitchComponent,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, RouterModule, FontAwesomeModule, DialogModule],
   providers: [],

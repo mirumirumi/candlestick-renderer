@@ -28,7 +28,7 @@ export class ChartComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.chart = init("chart", style)!
-    this.chart.setBarSpace(9)
+    this.chart.setBarSpace(11)
 
     const [prePrice, preVol] = this.getPrecisions(this.data)
     this.chart.setPriceVolumePrecision(prePrice, preVol)

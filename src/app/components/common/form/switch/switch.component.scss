@@ -1,0 +1,37 @@
+label {
+  position: relative;
+  display: inline-block;
+  width: 39px;
+  height: 14px;
+  input {
+    display: none;
+  }
+  span {
+    position: absolute;
+    inset: 0;
+    background-color: #7b7b7b;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.13s ease;
+    &::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      margin: auto;
+      border-radius: 50%;
+      background-color: #c4c4c4;
+      transition: all 0.13s ease;
+    }
+  }
+  input:checked + span {
+    background-color: var(--color-primary);
+  }
+  input:checked + span::before {
+    background-color: var(--color-text-white);
+    transform: translateX(19px);
+  }
+}
