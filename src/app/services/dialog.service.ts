@@ -8,8 +8,12 @@ import { ModalBase, ModalType } from "../components/common/modal/modal-base"
 @Injectable({
   providedIn: "root",
 })
-export class OepnDialogService<M extends ModalBase> {
-  constructor(protected dialog: Dialog, protected sanitizer: DomSanitizer) {}
+export class DialogService<M extends ModalBase> {
+  // biome-ignore format:
+  constructor(
+    protected dialog: Dialog,
+    protected sanitizer: DomSanitizer,
+  ) {}
 
   open(
     modalComponent: ComponentType<M>,

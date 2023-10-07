@@ -1,5 +1,3 @@
-import { InvalidValueError } from "./errors"
-
 export const delay = (msec: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(() => resolve(), msec))
 }
@@ -11,6 +9,6 @@ export const toBool = (s: string): boolean => {
   } else if (lower === "false") {
     return false
   } else {
-    throw new InvalidValueError()
+    throw Error("Invalid value")
   }
 }

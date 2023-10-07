@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from "@angular/core"
 import { Result } from "ts-results"
 
 import { ParseFileService } from "../../../services/parse-file.service"
+import { ToastService } from "../../../services/toast.service"
 import { FileData, KLineSource } from "../../../shared/types"
 
 @Component({
@@ -12,7 +13,11 @@ import { FileData, KLineSource } from "../../../shared/types"
 export class OpenFileComponent {
   @Output() onChange = new EventEmitter<KLineSource>()
 
-  constructor(protected parseFileService: ParseFileService) {}
+  // biome-ignore format:
+  constructor(
+    protected parseFileService: ParseFileService,
+    protected toastService: ToastService,
+  ) {}
 
   accept = [".json", ".csv", ".tsv", ".txt", ".rtf", ".log", ".dat"]
   isLoading = false
@@ -21,13 +26,13 @@ export class OpenFileComponent {
     this.isLoading = true
 
     if (file.err) {
-      // toast
+      this.toastService.error("Failed to load the file.")
       this.isLoading = false
       return
     }
 
     if (!this.accept.map((ext) => ext.slice(1)).includes(file.val[0]!.ext)) {
-      // toast
+      this.toastService.error("Unsupported file format.")
       this.isLoading = false
       return
     }
@@ -36,7 +41,7 @@ export class OpenFileComponent {
     const kline = this.parseFileService.parse(fileData)
 
     if (kline.err) {
-      // toast
+      this.toastService.error("The candlestick chart data is incorrect. Please verify and try again.")
       this.isLoading = false
       return
     }

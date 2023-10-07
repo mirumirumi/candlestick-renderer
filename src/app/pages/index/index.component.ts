@@ -2,7 +2,7 @@ import { DialogRef } from "@angular/cdk/dialog"
 import { Component } from "@angular/core"
 
 import { BaseModalComponent } from "../../components/common/modal/base-modal/base-modal.component"
-import { OepnDialogService } from "../../services/oepn-dialog.service"
+import { DialogService } from "../../services/dialog.service"
 import { KLineSource } from "../../shared/types"
 
 @Component({
@@ -15,7 +15,10 @@ export class IndexComponent {
   dialogRef!: DialogRef
   noFile = true
 
-  constructor(protected openDialogService: OepnDialogService<BaseModalComponent>) {}
+  // biome-ignore format:
+  constructor(
+    protected dialogService: DialogService<BaseModalComponent>,
+  ) {}
 
   onFileSelect(klineSource: KLineSource) {
     this.klineSource = klineSource
@@ -23,10 +26,10 @@ export class IndexComponent {
   }
 
   onClose() {
-    this.dialogRef = this.openDialogService.open(BaseModalComponent, {
+    this.dialogRef = this.dialogService.open(BaseModalComponent, {
       templateType: "confirm",
       context: {
-        content: "Are you sure you want to close the current candlestick chart?",
+        content: "Are you sure you want to close?",
         btnText: "Yes",
       },
     })
