@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "g": "ng g c components/$npm_config_name --skip-tests",
+        "c": "ng g c components/$npm_config_name --skip-tests",
+        "s": "ng g s services/$npm_config_name",
         "start": "ng serve",
         "build": "ng build",
         "watch": "ng build --watch --configuration development",

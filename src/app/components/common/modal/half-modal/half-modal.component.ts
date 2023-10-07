@@ -15,4 +15,4 @@ import { ModalBase } from "../modal-base"
     ]),
   ],
 })
-export class HalfModalComponent extends ModalBase<HalfModalComponent> {}
+export class HalfModalComponent extends ModalBase {}

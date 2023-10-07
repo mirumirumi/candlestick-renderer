@@ -1,10 +1,9 @@
-import { Dialog, DialogRef } from "@angular/cdk/dialog"
+import { DialogRef } from "@angular/cdk/dialog"
 import { Component, OnInit } from "@angular/core"
-import { DomSanitizer } from "@angular/platform-browser"
 import { ActivatedRoute, Router } from "@angular/router"
 
+import { OepnDialogService } from "../../../services/oepn-dialog.service"
 import { HalfModalComponent } from "../../common/modal/half-modal/half-modal.component"
-import { ModalType } from "../../common/modal/modal-base"
 
 @Component({
   selector: "c-footer",
@@ -15,10 +14,9 @@ export class FooterComponent implements OnInit {
   dialogRef!: DialogRef
 
   constructor(
-    protected dialog: Dialog,
-    protected sanitizer: DomSanitizer,
     protected route: ActivatedRoute,
     protected router: Router,
+    protected openDialogService: OepnDialogService<HalfModalComponent>,
   ) {}
 
   ngOnInit() {
@@ -36,19 +34,17 @@ export class FooterComponent implements OnInit {
   }
 
   showPP() {
-    this.dialogRef = this.dialog.open<unknown, ModalType>(HalfModalComponent, {
-      data: {
+    this.dialogRef = this.openDialogService.open(
+      HalfModalComponent,
+      {
         templateType: "simple",
         context: {
           title: "Privacy Policy and Terms of Use",
-          content: this.sanitizer.bypassSecurityTrustHtml(statement),
+          content: statement,
         },
       },
-      // panelClass: "",
-      autoFocus: "first-header",
-      disableClose: true,
-    })
-
+      { autoFocus: "first-heading" },
+    )
     this.dialogRef.closed.subscribe(() =>
       this.router.navigate([], { queryParams: { p: null }, queryParamsHandling: "merge" }),
     )

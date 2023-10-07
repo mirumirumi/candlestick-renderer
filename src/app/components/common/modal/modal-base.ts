@@ -4,9 +4,7 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  EventEmitter,
   Inject,
-  Output,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -39,22 +37,21 @@ type ActionModal = {
 
 export type ModalType = SimpleModal | ConfirmModal | ActionModal
 
-@Component({ template: "" })
-export abstract class ModalBase<C> implements AfterViewInit {
-  @Output() onClose = new EventEmitter<void>()
-  @Output() onConfirm = new EventEmitter<void>()
-  @Output() onAction = new EventEmitter<void>()
+type CloseEvent = "OK"
 
+@Component({ template: "" })
+export abstract class ModalBase implements AfterViewInit {
   @ViewChild("container", { read: ViewContainerRef }) container!: ViewContainerRef
   @ViewChild("simple_t", { read: TemplateRef }) simpleTemplate!: TemplateRef<ModalType>
   @ViewChild("confirm_t", { read: TemplateRef }) confirmTemplate!: TemplateRef<ModalType>
   @ViewChild("action_t", { read: TemplateRef }) actionTemplate!: TemplateRef<ModalType>
 
   leaving = false
+  closeEvent?: CloseEvent = undefined
 
   constructor(
     @Inject(DIALOG_DATA) protected data: ModalType,
-    protected dialogRef: DialogRef<C>,
+    protected dialogRef: DialogRef<CloseEvent>,
     protected cd: ChangeDetectorRef,
   ) {
     this.dialogRef.keydownEvents.subscribe((e: KeyboardEvent) => {
@@ -82,15 +79,16 @@ export abstract class ModalBase<C> implements AfterViewInit {
   }
 
   // All close events must use this method
-  close() {
+  close(event?: CloseEvent) {
+    this.closeEvent = event
+
     // The animation will start to close
     this.leaving = true
   }
 
   animationDone(event: AnimationEvent) {
     if (event.toState === "hidden") {
-      this.dialogRef.close()
-      this.onClose.emit()
+      this.dialogRef.close(this.closeEvent)
     }
   }
 }

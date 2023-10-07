@@ -14,4 +14,4 @@ import { ModalBase } from "../modal-base"
     ]),
   ],
 })
-export class BaseModalComponent extends ModalBase<BaseModalComponent> {}
+export class BaseModalComponent extends ModalBase {}

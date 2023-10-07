@@ -1,9 +1,8 @@
-import { Dialog, DialogRef } from "@angular/cdk/dialog"
+import { DialogRef } from "@angular/cdk/dialog"
 import { Component } from "@angular/core"
-import { DomSanitizer } from "@angular/platform-browser"
 
 import { BaseModalComponent } from "../../components/common/modal/base-modal/base-modal.component"
-import { ModalType } from "../../components/common/modal/modal-base"
+import { OepnDialogService } from "../../services/oepn-dialog.service"
 import { KLineSource } from "../../shared/types"
 
 @Component({
@@ -16,7 +15,7 @@ export class IndexComponent {
   dialogRef!: DialogRef
   noFile = true
 
-  constructor(protected dialog: Dialog) {}
+  constructor(protected openDialogService: OepnDialogService<BaseModalComponent>) {}
 
   onFileSelect(klineSource: KLineSource) {
     this.klineSource = klineSource
@@ -24,18 +23,19 @@ export class IndexComponent {
   }
 
   onClose() {
-    this.dialogRef = this.dialog.open<unknown, ModalType>(BaseModalComponent, {
-      data: {
-        templateType: "confirm",
-        context: {
-          content: "Are you sure you want to close the current candlestick chart?",
-          btnText: "Yes",
-        },
+    this.dialogRef = this.openDialogService.open(BaseModalComponent, {
+      templateType: "confirm",
+      context: {
+        content: "Are you sure you want to close the current candlestick chart?",
+        btnText: "Yes",
       },
-      // panelClass: "",
-      disableClose: true,
     })
+    this.dialogRef.closed.subscribe((e) => {
+      if (e) this.onConfirm()
+    })
+  }
 
-    // this.noFile = true
+  onConfirm() {
+    this.noFile = true
   }
 }
