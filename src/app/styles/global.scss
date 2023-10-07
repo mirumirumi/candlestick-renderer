@@ -106,11 +106,9 @@ input::placeholder,
 textarea::placeholder {
   color: #cccccc;
 }
-// input:focus-visible,
-// button:focus-visible,
-// textarea:focus-visible {
-//   outline: none;
-// }
+*:focus-visible {
+  outline: solid 2px #539bf5;
+}
 button {
   cursor: pointer;
   &.reset {
