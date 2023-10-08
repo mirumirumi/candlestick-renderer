@@ -30,7 +30,7 @@ export class DialogService<M extends ModalBase> {
       data,
       disableClose: true,
       panelClass: options?.class,
-      autoFocus: options?.autoFocus ?? "first-tabbable",
+      autoFocus: options?.autoFocus ?? "dialog",
     })
   }
 }
