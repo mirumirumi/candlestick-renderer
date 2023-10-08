@@ -29,6 +29,7 @@
   --width-scrollbar: 16px;
   --width-max-screen: calc(var(--width-max-base) - var(--width-scrollbar));
   --font-family: "Custom Noto Sans", "Open Sans", helvetica, "Lucida Sans Unicode", "Lucida Grande", arial, verdana, sans-serif;
+  --focus-visible-outline: solid 2px #539bf5;
 }
 * {
   box-sizing: border-box;
@@ -107,7 +108,7 @@ textarea::placeholder {
   color: #cccccc;
 }
 *:focus-visible {
-  outline: solid 2px #539bf5;
+  outline: var(--focus-visible-outline);
 }
 button {
   cursor: pointer;
