@@ -1,4 +1,14 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from "@angular/core"
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  QueryList,
+  ViewChildren,
+} from "@angular/core"
 
 import { isHalfWidth } from "../../../../shared/utils"
 
@@ -14,12 +24,14 @@ type ItemIndex = [Item, number]
   templateUrl: "./select-box.component.html",
   styleUrls: ["./select-box.component.scss"],
 })
-export class SelectBoxComponent implements OnInit {
+export class SelectBoxComponent implements OnInit, OnDestroy {
   // Selectable to have the default item selected or not selected as the initial state
 
   @Input({ required: true }) items!: Array<Item>
   @Input() placeholder = ""
   @Input() defaultIndex: number | null = 0
+  @Input() type!: "fill" | "outline" // UNIMPLEMENTED!
+  @Input() mainColor = "var(--color-gray)" // UNIMPLEMENTED!
 
   @Output() onSelect = new EventEmitter<ItemIndex>()
 
@@ -30,6 +42,7 @@ export class SelectBoxComponent implements OnInit {
   selectedItem!: ItemIndex
   currentIndex!: number // Used only with keyboard selection
   width!: string
+  clickEvent = () => this.close()
 
   ngOnInit() {
     // Dynamically determine the width from the longest strings in items
@@ -52,13 +65,16 @@ export class SelectBoxComponent implements OnInit {
     this.currentIndex = this.selectedItem[1]
     this.isSelecting = true
 
-    setTimeout(() => this.buttonsRef.get(this.selectedItem[1])!.nativeElement.focus())
+    setTimeout(() => {
+      this.buttonsRef.get(this.selectedItem[1])!.nativeElement.focus()
+      document.addEventListener("click", this.clickEvent)
+    })
   }
 
   select(itemIndex: ItemIndex) {
     this.selectedItem = itemIndex
     this.currentIndex = itemIndex[1]
-    this.isSelecting = false
+    this.close()
     this.hasSelectedAtLeastOnce = true
     this.onSelect.emit(itemIndex)
   }
@@ -85,6 +101,7 @@ export class SelectBoxComponent implements OnInit {
 
   protected close() {
     this.isSelecting = false
+    document.removeEventListener("click", this.clickEvent)
   }
 
   protected setWidth() {
@@ -104,5 +121,10 @@ export class SelectBoxComponent implements OnInit {
       }
     }
     this.width = `${(witdh * 1.3).toString()}em`
+  }
+
+  ngOnDestroy() {
+    // It should have been removed every time, but just in case
+    document.removeEventListener("click", this.clickEvent)
   }
 }
