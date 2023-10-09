@@ -21,7 +21,7 @@ import style from "./style-config"
   ],
 })
 export class ChartComponent implements OnInit, OnDestroy {
-  @Input() data!: KLineSource
+  @Input({ required: true }) data!: KLineSource
 
   chart!: Chart
   onResize = debounce(300, () => this.chart.resize())

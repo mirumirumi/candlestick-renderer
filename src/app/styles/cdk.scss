@@ -1,0 +1,37 @@
+.cdk-overlay-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  z-index: 13;
+  .cdk-overlay-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: #000000;
+    opacity: 0.5;
+    pointer-events: auto;
+    transition: all 0.09s ease;
+  }
+  &:empty {
+    display: none
+  }
+  .cdk-global-overlay-wrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    pointer-events: none;
+  }
+  .cdk-overlay-pane {
+    position: relative;
+    pointer-events: auto;
+  }
+  .cdk-overlay-connected-position-bounding-box {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    min-width: 1px;
+    min-height: 1px;
+  }
+}

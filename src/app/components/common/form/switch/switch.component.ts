@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core"
   styleUrls: ["./switch.component.scss"],
 })
 export class SwitchComponent implements OnInit {
-  @Input() isChecked!: boolean
+  @Input({ required: true }) isChecked!: boolean
   @Output() onChange = new EventEmitter<boolean>()
 
   id!: string

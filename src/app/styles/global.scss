@@ -17,7 +17,7 @@
  */
 :root {
   --color-text: #e4e4e4;
-  --color-gray: #bab9b9;
+  --color-gray: #474747;
   --color-text-white: #f2f2f2;
   --color-text-white-hover: #e3e3e3;
   --color-background: #141422;
@@ -29,6 +29,7 @@
   --width-scrollbar: 16px;
   --width-max-screen: calc(var(--width-max-base) - var(--width-scrollbar));
   --font-family: "Custom Noto Sans", "Open Sans", helvetica, "Lucida Sans Unicode", "Lucida Grande", arial, verdana, sans-serif;
+  --box-shadow: 1px 3px 5px rgba(#19191c, 0.666);
   --focus-visible-outline: solid 2px #539bf5;
 }
 * {
@@ -139,20 +140,6 @@ fa-icon {
   .display_none_mobile {
     display: none;
   }
-}
-.dropdown_caret {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin: 5.5px 0 0 36px;
-  vertical-align: middle;
-  content: "";
-  border-style: solid;
-  border-width: 4.7px 4.7px 0;
-  border-top-color: #838383;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  border-bottom-color: transparent;
 }
 ::-webkit-scrollbar {
   width: var(--width-scrollbar);

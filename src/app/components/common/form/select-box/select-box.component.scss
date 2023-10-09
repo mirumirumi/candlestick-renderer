@@ -1,0 +1,72 @@
+.root {
+  position: relative;
+  display: inline-block;
+  // The only changeable `font-size` in this scss
+  font-size: 0.95em;
+  .selector {
+    position: relative;
+    display: inline-block;
+    padding: 0.2em 1.5em 0.23em 0.2em;
+    color: var(--color-text-white);
+    font-weight: bold;
+    font-family: var(--font-family);
+    font-size: 79%;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    border: 1.9px solid var(--color-gray);
+    border-radius: 5px;
+    background-color: transparent;
+    user-select: none;
+    transition: all 0.13s ease-out;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 53%;
+      transform: translateY(-50%);
+      right: 1em;
+      border-style: solid;
+      border-width: 4.7px 4.7px 0;
+      border-top-color: var(--color-gray);
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+    }
+  }
+  .items {
+    position: absolute;
+    top: calc(100% + 1.3px);
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 0.3em 0 0.49em;
+    max-height: 200px;
+    font-size: 79%;
+    border: solid 1.3px var(--color-gray);
+    border-radius: 5px;
+    background-color: var(--color-background);
+    box-shadow: var(--box-shadow);
+    overflow-y: auto;
+    z-index: 2;
+    button {
+      display: block;
+      width: 100%;
+      padding: 0.3em 1em 0.39em;
+      font-size: 100%;
+      color: var(--color-text-white);
+      font-family: var(--font-family);
+      white-space: nowrap;
+      text-align: left;
+      border: none;
+      background-color: var(--color-background);
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        filter: contrast(0.79);
+      }
+      &:focus-visible {
+        outline: none;
+      }
+    }
+  }
+}

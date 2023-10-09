@@ -42,6 +42,7 @@
                         ],
                         "styles": [
                             "src/app/styles/global.scss",
+                            "src/app/styles/cdk.scss",
                             "src/app/styles/modal.scss"
                         ],
                         "scripts": []

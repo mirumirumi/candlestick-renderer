@@ -1,66 +1,47 @@
-.cdk-overlay-container {
-  position: fixed;
-  inset: 0;
-  z-index: 13;
-  .cdk-overlay-backdrop {
-    position: absolute;
-    inset: 0;
-    background-color: #000000;
-    opacity: 0.5;
-    pointer-events: auto;
-    transition: all 0.09s ease;
-  }
-  .cdk-global-overlay-wrapper {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    pointer-events: none;
-    .cdk-overlay-pane /* Custom class applied here by `panelClass` */ {
-      pointer-events: auto;
-      .modal_body {
-        margin: auto;
-        position: relative;
-        width: 555px;
-        padding: 0.9em 1.3em 0.5em;
-        color: var(--color-text);
-        background-color: #303035;
-        box-shadow: 1px 3px 5px rgba(#19191c, 0.666);
-        border-radius: 7px;
-        button {
-          top: 1.9em;
-          right: 2.3em;
-          bottom: auto;
-        }
-        .title {
-          margin-bottom: 1em;
-          font-size: 1.05em;
-          font-weight: bold;
-        }
-        .content {
-          margin: 0.3em auto 0.9em;
-          font-size: 0.93em;
-          &.simple {}
-          &.confirm {}
-          &.action {
-            display: flex;
-            flex-direction: column;
-            gap: 17px;
-          }
-        }
-        .buttons {
-          padding-top: 5px;
-          text-align: right;
-          font-size: 0.9em;
-          border-top: 1px solid #515254;
-          button {
-            margin: 0.3em 0em 0.3em 0.7em;
-            padding: 0.39em 1.5em 0.4em;
-          }
-        }
+/* .xxx  { Custom class applied here by `panelClass` */
+.cdk-dialog-container {
+  .modal_body {
+    margin: auto;
+    position: relative;
+    width: 555px;
+    padding: 0.9em 1.3em 0.5em;
+    color: var(--color-text);
+    background-color: #303035;
+    box-shadow: var(--box-shadow);
+    border-radius: 7px;
+    button {
+      top: 1.9em;
+      right: 2.3em;
+      bottom: auto;
+    }
+    .title {
+      margin-bottom: 1em;
+      font-size: 1.05em;
+      font-weight: bold;
+    }
+    .content {
+      margin: 0.3em auto 0.9em;
+      font-size: 0.93em;
+      &.simple {}
+      &.confirm {}
+      &.action {
+        display: flex;
+        flex-direction: column;
+        gap: 17px;
+      }
+    }
+    .buttons {
+      padding-top: 5px;
+      text-align: right;
+      font-size: 0.9em;
+      border-top: 1px solid #515254;
+      button {
+        margin: 0.3em 0em 0.3em 0.7em;
+        padding: 0.39em 1.5em 0.4em;
       }
     }
   }
-  &:empty {
-    display: none
+  &:focus-visible {
+    outline: none;
   }
 }

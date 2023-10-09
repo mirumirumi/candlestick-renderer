@@ -1,0 +1,16 @@
+<div class="root">
+  <button class="selector" [style.width]="width" (click)="show()">
+    <ng-container *ngIf="hasSelectedAtLeastOnce">
+      {{ selectedItem[0].text ? selectedItem[0].text : selectedItem[0].value }}
+    </ng-container>
+    <ng-container *ngIf="!hasSelectedAtLeastOnce">
+      {{ placeholder }}
+    </ng-container>
+  </button>
+  <div *ngIf="isSelecting" class="items" [style.width]="width">
+    <button #buttons *ngFor="let item of items; let i = index" tabindex="-1" (click)="select([item, i])"
+      (keydown)="onKeyEvents($event, [item,i])">
+      {{ item.text ?? item.value }}
+    </button>
+  </div>
+</div>
