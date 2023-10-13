@@ -1,4 +1,5 @@
 .root {
+  position: relative;
   // The only changeable `font-size` in this scss (by `@Input() fontSize`)
   font-size: 0.95em;
   .selector {
@@ -57,7 +58,6 @@
       border: none;
       background-color: var(--color-background);
       &:hover,
-      &:focus,
       &:focus-visible {
         filter: contrast(0.79);
       }

@@ -9,10 +9,11 @@ export class SwitchComponent implements OnInit {
   @Input({ required: true }) isChecked!: boolean
   @Output() changed = new EventEmitter<boolean>()
 
+  static idCounter = 0
   id!: string
 
   ngOnInit() {
-    this.id = Date.now().toString()
+    this.id = `c-switch-${SwitchComponent.idCounter++}`
   }
 
   toggle() {

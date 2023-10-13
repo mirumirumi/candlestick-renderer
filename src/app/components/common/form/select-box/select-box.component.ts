@@ -13,7 +13,7 @@ import {
 import { isHalfWidth } from "../../../../shared/utils"
 
 interface Item {
-  value: string
+  value: string | unknown
   text?: string
 }
 
@@ -62,7 +62,14 @@ export class SelectBoxComponent implements OnInit, OnDestroy {
     }
   }
 
-  show() {
+  show(e: Event) {
+    if (
+      this.isSelecting &&
+      (e.target as HTMLButtonElement).parentElement?.parentElement?.tagName === "c-select-box".toUpperCase()
+    ) {
+      return
+    }
+
     this.currentIndex = this.selectedItem[1]
     this.isSelecting = true
 
@@ -110,7 +117,7 @@ export class SelectBoxComponent implements OnInit, OnDestroy {
     for (const item of this.items) {
       const text = item.text ?? item.value
       let length = 0
-      for (const t of text) {
+      for (const t of text as string) {
         if (isHalfWidth(t)) {
           length += 1
         } else {

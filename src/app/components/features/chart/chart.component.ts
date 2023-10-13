@@ -1,8 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core"
 import { Chart, init } from "klinecharts"
+import { skip } from "rxjs"
 import { debounce } from "throttle-debounce"
 
 import { KLineSource } from "../../../shared/types"
+import { PreferenceQuery } from "../../../states/preference.query"
 import style from "./style-config"
 
 @Component({
@@ -26,6 +28,11 @@ export class ChartComponent implements OnInit, OnDestroy {
   chart!: Chart
   onResize = debounce(300, () => this.chart.resize())
 
+  // biome-ignore format:
+  constructor(
+    protected preferenceQuery: PreferenceQuery,
+  ) {}
+
   ngOnInit() {
     this.chart = init("chart", style)!
     this.chart.setBarSpace(11)
@@ -33,15 +40,39 @@ export class ChartComponent implements OnInit, OnDestroy {
     const [prePrice, preVol] = this.getPrecisions(this.data)
     this.chart.setPriceVolumePrecision(prePrice, preVol)
 
-    // MAs
-    this.chart.createIndicator({ name: "MA", calcParams: [5, 10, 20] }, false, { id: "candle_pane" })
-
-    // Volume pane
-    if (this.data[0]!.volume) {
-      this.chart.createIndicator({ name: "VOL" }, true, { height: 113 })
+    // Load preferences
+    const preference = this.preferenceQuery.raw()
+    let paneIdVolumePane: string
+    this.chart.createIndicator({ name: "MA", calcParams: [5, 10, 20], visible: preference.mas }, false, {
+      id: "candle_pane",
+    }) as string
+    if (preference.volumePane) {
+      if (this.data[0]!.volume) {
+        paneIdVolumePane = this.chart.createIndicator({ name: "VOL" }, true, { height: 113 }) as string
+      }
     }
 
+    // Render a chart
     this.chart.applyNewData(this.data)
+
+    // Subscribe changing preferences
+    this.preferenceQuery.selectYAxis().subscribe((newValue) => this.chart.setStyles({ yAxis: { type: newValue } }))
+    this.preferenceQuery
+      .selectCurrentLabel()
+      .subscribe((newValue) => this.chart.setStyles({ candle: { priceMark: { last: { show: newValue } } } }))
+    this.preferenceQuery.selectMAs().subscribe((newValue) => {
+      this.chart.overrideIndicator({ name: "MA", visible: newValue })
+    })
+    this.preferenceQuery
+      .selectVolumePane()
+      .pipe(skip(1))
+      .subscribe((newValue) => {
+        if (!newValue) {
+          this.chart.removeIndicator(paneIdVolumePane)
+        } else {
+          paneIdVolumePane = this.chart.createIndicator({ name: "VOL" }, true, { height: 113 }) as string
+        }
+      })
 
     // Add event listener for window resizeing
     window.addEventListener("resize", this.onResize)
