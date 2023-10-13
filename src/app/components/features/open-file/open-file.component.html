@@ -3,7 +3,7 @@
   <div class="text">
     Select a file as candlestick (Kline) data such as JSON, CSV, TSV, and just raw data...
   </div>
-  <c-input-file [accept]="accept.join()" (onChange)="onFileChange($event)">
+  <c-input-file [accept]="accept.join()" (changed)="onFileChange($event)">
     <c-base-button [type]="'fill'" [isSubmitting]="isLoading">
       Open a file
     </c-base-button>

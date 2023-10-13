@@ -1,7 +1,7 @@
 <main>
   <div class="viewer">
     <div *ngIf="noFile" class="no_file">
-      <c-open-file (onChange)="onFileSelect($event)" />
+      <c-open-file (changed)="onFileSelect($event)" />
     </div>
     <ng-container *ngIf="!noFile">
       <c-chart [data]="klineSource" />

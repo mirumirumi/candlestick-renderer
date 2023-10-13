@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core"
 })
 export class SwitchComponent implements OnInit {
   @Input({ required: true }) isChecked!: boolean
-  @Output() onChange = new EventEmitter<boolean>()
+  @Output() changed = new EventEmitter<boolean>()
 
   id!: string
 
@@ -17,6 +17,6 @@ export class SwitchComponent implements OnInit {
 
   toggle() {
     this.isChecked = !this.isChecked
-    this.onChange.emit(this.isChecked)
+    this.changed.emit(this.isChecked)
   }
 }

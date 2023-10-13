@@ -2,20 +2,20 @@
   <div class="item">
     <div>Y-axis</div>
     <c-select-box [items]="[{ value: 'Price' }, { value: 'Percent' }, { value: 'Log' }]" [defaultIndex]=""
-      fontSize="0.89em" (onSelect)="yAxis($event)"></c-select-box>
+      fontSize="0.89em" (selected)="yAxis($event)"></c-select-box>
   </div>
   <div class="item">
     <div>Current label</div>
-    <c-switch [isChecked]="true" (onChange)="currentLabel($event)"></c-switch>
+    <c-switch [isChecked]="true" (changed)="currentLabel($event)"></c-switch>
   </div>
 </div>
 <div class="group">
   <div class="item">
     <div>MAs</div>
-    <c-switch [isChecked]="true" (onChange)="mas($event)"></c-switch>
+    <c-switch [isChecked]="true" (changed)="mas($event)"></c-switch>
   </div>
   <div class="item">
     <div>Volume pane</div>
-    <c-switch [isChecked]="true" (onChange)="volumePane($event)"></c-switch>
+    <c-switch [isChecked]="true" (changed)="volumePane($event)"></c-switch>
   </div>
 </div>

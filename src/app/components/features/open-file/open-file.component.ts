@@ -11,7 +11,7 @@ import { FileData, KLineSource } from "../../../shared/types"
   styleUrls: ["./open-file.component.scss"],
 })
 export class OpenFileComponent {
-  @Output() onChange = new EventEmitter<KLineSource>()
+  @Output() changed = new EventEmitter<KLineSource>()
 
   // biome-ignore format:
   constructor(
@@ -46,7 +46,7 @@ export class OpenFileComponent {
       return
     }
 
-    this.onChange.emit(kline.val)
+    this.changed.emit(kline.val)
     this.isLoading = false
   }
 }

@@ -11,12 +11,12 @@ export class InputFileComponent {
   @Input() accept?: string
   @Input() multiple?: boolean
 
-  @Output() onChange = new EventEmitter<Result<Array<FileData>, Error>>()
+  @Output() changed = new EventEmitter<Result<Array<FileData>, Error>>()
 
   async onFileChange(e: Event) {
     const input = e.target as HTMLInputElement
     if (!input.files?.length) {
-      this.onChange.emit(new Err(Error()))
+      this.changed.emit(new Err(Error()))
       return
     }
 
@@ -42,11 +42,11 @@ export class InputFileComponent {
       )
     } catch (err) {
       console.error(err)
-      this.onChange.emit(new Err(Error()))
+      this.changed.emit(new Err(Error()))
       return
     }
 
-    this.onChange.emit(new Ok(results))
+    this.changed.emit(new Ok(results))
   }
 
   protected async readFileAsync(file: File): Promise<string> {

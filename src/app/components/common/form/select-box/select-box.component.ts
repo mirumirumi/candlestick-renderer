@@ -34,7 +34,7 @@ export class SelectBoxComponent implements OnInit, OnDestroy {
   @Input() mainColor = "var(--color-gray)" // UNIMPLEMENTED!
   @Input() fontSize = "0.95em"
 
-  @Output() onSelect = new EventEmitter<ItemIndex>()
+  @Output() selected = new EventEmitter<ItemIndex>()
 
   @ViewChildren("buttons") buttonsRef!: QueryList<ElementRef<HTMLButtonElement>>
 
@@ -77,7 +77,7 @@ export class SelectBoxComponent implements OnInit, OnDestroy {
     this.currentIndex = itemIndex[1]
     this.close()
     this.hasSelectedAtLeastOnce = true
-    this.onSelect.emit(itemIndex)
+    this.selected.emit(itemIndex)
   }
 
   onKeyEvents(e: KeyboardEvent, itemIndex: ItemIndex) {
