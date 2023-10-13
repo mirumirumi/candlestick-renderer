@@ -1,11 +1,8 @@
 .root {
-  position: relative;
-  display: inline-block;
-  // The only changeable `font-size` in this scss
+  // The only changeable `font-size` in this scss (by `@Input() fontSize`)
   font-size: 0.95em;
   .selector {
     position: relative;
-    display: inline-block;
     padding: 0.2em 1.5em 0.23em 0.2em;
     color: var(--color-text-white);
     font-weight: bold;

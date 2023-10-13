@@ -1,5 +1,5 @@
-<div class="root">
-  <button class="selector" [style.width]="width" (click)="show()">
+<div class="root" [style.fontSize]="fontSize">
+  <button class=" selector" [style.width]="width" (click)="show()">
     <ng-container *ngIf="hasSelectedAtLeastOnce">
       {{ selectedItem[0].text ? selectedItem[0].text : selectedItem[0].value }}
     </ng-container>

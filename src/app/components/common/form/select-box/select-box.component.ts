@@ -17,7 +17,7 @@ interface Item {
   text?: string
 }
 
-type ItemIndex = [Item, number]
+export type ItemIndex = [Item, number]
 
 @Component({
   selector: "c-select-box",
@@ -32,6 +32,7 @@ export class SelectBoxComponent implements OnInit, OnDestroy {
   @Input() defaultIndex: number | null = 0
   @Input() type!: "fill" | "outline" // UNIMPLEMENTED!
   @Input() mainColor = "var(--color-gray)" // UNIMPLEMENTED!
+  @Input() fontSize = "0.95em"
 
   @Output() onSelect = new EventEmitter<ItemIndex>()
 

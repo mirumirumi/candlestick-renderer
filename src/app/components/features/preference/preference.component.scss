@@ -1,0 +1,25 @@
+.group {
+  padding: 0.7em 1.3em;
+  border: solid 0.79px var(--color-gray);
+  border-left: none;
+  border-right: none;
+  &:first-child {
+    border-top: none;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+  .item {
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    align-items: center;
+    margin: 0.5em auto;
+    div {
+      padding-bottom: 0.05em;
+      font-size: 0.8em;
+    }
+    c-select-box {
+
+    }
+  }
+}
