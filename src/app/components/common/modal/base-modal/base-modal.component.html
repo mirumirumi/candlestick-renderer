@@ -6,8 +6,8 @@
   <div class="content confirm" [innerHTML]="item.content">
   </div>
   <div class="buttons">
-    <c-base-button [type]="'text'" (click)="close()">Cancel</c-base-button>
-    <c-base-button [type]="'fill'" (click)="close('OK')">{{ item.btnText }}</c-base-button>
+    <c-base-button type="text" (click)="close()">Cancel</c-base-button>
+    <c-base-button type="fill" (click)="close('OK')">{{ item.btnText }}</c-base-button>
   </div>
 </ng-template>
 
@@ -15,7 +15,7 @@
   <div class="content action" [innerHTML]="item.content">
   </div>
   <div class="buttons">
-    <c-base-button [type]="'text'" (click)="close()">Cancel</c-base-button>
-    <c-base-button [type]="'fill'" (click)="close('OK')">{{ item.btnText }}</c-base-button>
+    <c-base-button type="text" (click)="close()">Cancel</c-base-button>
+    <c-base-button type="fill" (click)="close('OK')">{{ item.btnText }}</c-base-button>
   </div>
 </ng-template>
