@@ -12,7 +12,13 @@
 </ng-template>
 
 <ng-template #action_t let-item="context">
-  <div class="content action" [innerHTML]="item.content">
+  <div *ngIf="item.title" class="title" role="heading">
+    {{ item.title }}
+  </div>
+  <div *ngIf="isString(item.content)" class="content action" [innerHTML]="item.content">
+  </div>
+  <div *ngIf="!isString(item.content)" class="content action">
+    <ng-container #action_container></ng-container>
   </div>
   <div class="buttons">
     <c-base-button type="text" (click)="close()">Cancel</c-base-button>

@@ -2,7 +2,7 @@ import { DialogRef } from "@angular/cdk/dialog"
 import { Component, OnInit } from "@angular/core"
 import { ActivatedRoute, Router } from "@angular/router"
 
-import { DialogService } from "../../../services/dialog.service"
+import { ModalService } from "../../../services/modal.service"
 import { HalfModalComponent } from "../../common/modal/half-modal/half-modal.component"
 
 @Component({
@@ -16,7 +16,7 @@ export class FooterComponent implements OnInit {
   constructor(
     protected route: ActivatedRoute,
     protected router: Router,
-    protected dialogService: DialogService<HalfModalComponent>,
+    protected modalService: ModalService<HalfModalComponent>,
   ) {}
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class FooterComponent implements OnInit {
   }
 
   showPP() {
-    this.dialogRef = this.dialogService.open(
+    this.dialogRef = this.modalService.open(
       HalfModalComponent,
       {
         templateType: "simple",

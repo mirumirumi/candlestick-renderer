@@ -2,6 +2,7 @@ import { DialogModule } from "@angular/cdk/dialog"
 import { CdkMenuModule } from "@angular/cdk/menu"
 import { OverlayModule } from "@angular/cdk/overlay"
 import { NgModule } from "@angular/core"
+import { FormsModule } from "@angular/forms"
 import { BrowserModule } from "@angular/platform-browser"
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome"
@@ -16,6 +17,7 @@ import { SpinnerComponent } from "./components/common/loading/spinner/spinner.co
 import { BaseModalComponent } from "./components/common/modal/base-modal/base-modal.component"
 import { HalfModalComponent } from "./components/common/modal/half-modal/half-modal.component"
 import { ChartComponent } from "./components/features/chart/chart.component"
+import { InputDirectlyComponent } from "./components/features/input-directly/input-directly.component"
 import { OpenFileComponent } from "./components/features/open-file/open-file.component"
 import { PreferenceComponent } from "./components/features/preference/preference.component"
 import { FooterComponent } from "./components/layouts/footer/footer.component"
@@ -39,11 +41,13 @@ import { RouterModule } from "./router/routes"
     PreferenceComponent,
     SwitchComponent,
     SelectBoxComponent,
+    InputDirectlyComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
+    FormsModule,
     FontAwesomeModule,
     DialogModule,
     CdkMenuModule,

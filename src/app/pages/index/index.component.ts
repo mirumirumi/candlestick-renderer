@@ -2,7 +2,7 @@ import { DialogRef } from "@angular/cdk/dialog"
 import { Component } from "@angular/core"
 
 import { BaseModalComponent } from "../../components/common/modal/base-modal/base-modal.component"
-import { DialogService } from "../../services/dialog.service"
+import { ModalService } from "../../services/modal.service"
 import { KLineSource } from "../../shared/types"
 
 @Component({
@@ -13,20 +13,20 @@ import { KLineSource } from "../../shared/types"
 export class IndexComponent {
   klineSource!: KLineSource
   dialogRef!: DialogRef
-  noFile = true
+  existsViewer = false
 
   // biome-ignore format:
   constructor(
-    protected dialogService: DialogService<BaseModalComponent>,
+    protected modalService: ModalService<BaseModalComponent>,
   ) {}
 
-  onFileSelect(klineSource: KLineSource) {
+  renderChart(klineSource: KLineSource) {
     this.klineSource = klineSource
-    this.noFile = false
+    this.existsViewer = true
   }
 
   onClose() {
-    this.dialogRef = this.dialogService.open(BaseModalComponent, {
+    this.dialogRef = this.modalService.open(BaseModalComponent, {
       templateType: "confirm",
       context: {
         content: "Are you sure you want to close?",
@@ -39,6 +39,6 @@ export class IndexComponent {
   }
 
   onConfirm() {
-    this.noFile = true
+    this.existsViewer = false
   }
 }

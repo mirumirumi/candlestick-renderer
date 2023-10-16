@@ -101,13 +101,6 @@ ul, li {
 img {
   vertical-align: middle;
 }
-textarea {
-  font-family: inherit;
-}
-input::placeholder,
-textarea::placeholder {
-  color: #cccccc;
-}
 *:focus-visible {
   outline: var(--focus-visible-outline);
 }
@@ -154,20 +147,21 @@ fa-icon {
 /**
  * form
  */
-.input {
+input,
+textarea {
   display: block;
   width: 100%;
   padding: 0.375em 0.75em;
   color: #5b5b5b;
   font-size: 1em;
-  font-weight: 400;
-  font-family: var(--font-family);
+  font-weight: normal;
+  font-family: inherit;
   line-height: 1.5;
   background-color: #ffffff;
   background-clip: padding-box;
   border: 1.1px solid #e2dcd3;
-  appearance: none;
   border-radius: 5px;
+  appearance: none;
   transition: all 0.17s ease-out;
   &:focus {
     border-color: var(--color-input-focus-border);
@@ -178,29 +172,20 @@ fa-icon {
     opacity: 1;
   }
   &::placeholder {
-    font-family: var(--font-family);
+    color: #cccccc;
+    font-family: inherit;
   }
+}
+textarea {
+  resize: none;
 }
 label {
   display: inline-block;
-  .form_check_input[disabled] ~ & {
+  .checkbox[disabled] ~ & {
     opacity: 0.5;
   }
 }
-.form_label {
-  margin-bottom: 0.5rem;
-}
-.form_check {
-  display: block;
-  min-height: 1.5rem;
-  padding-left: 1.7em;
-  margin-bottom: 0.125rem;
-  .form_check_input {
-    float: left;
-    margin-left: -1.7em;
-  }
-}
-.form_check_input {
+.checkbox {
   width: 1em;
   height: 1em;
   margin-top: 0.25em;
@@ -234,7 +219,7 @@ label {
   justify-content: flex-start;
   align-items: center;
   margin: 0.1em 0;
-  .form_check_input {
+  .checkbox {
     margin: 0 !important;
   }
   label {

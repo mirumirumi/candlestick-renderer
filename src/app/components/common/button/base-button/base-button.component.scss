@@ -15,6 +15,7 @@ button {
   border-radius: 5px;
   box-shadow: 1.3px 1.7px 5px -2px #50494e59;
   user-select: none;
+  text-wrap: nowrap;
   transition: all 0.13s ease-out;
   &:disabled {
     pointer-events: none;

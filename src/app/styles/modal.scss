@@ -1,9 +1,9 @@
 /* .xxx  { Custom class applied here by `panelClass` */
 .cdk-dialog-container {
   .modal_body {
-    margin: auto;
     position: relative;
     width: 555px;
+    margin: auto;
     padding: 0.9em 1.3em 0.5em;
     color: var(--color-text);
     background-color: #303035;
@@ -32,8 +32,8 @@
     }
     .buttons {
       padding-top: 5px;
-      text-align: right;
       font-size: 0.9em;
+      text-align: right;
       border-top: 1px solid #515254;
       button {
         margin: 0.3em 0em 0.3em 0.7em;

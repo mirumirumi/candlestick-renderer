@@ -1,0 +1,13 @@
+<div class="root">
+  <img src="/assets/images/input-directly.png" alt="" aria-hidden="true" role="presentation">
+  <div class="text">
+    Enter raw text data directly...
+  </div>
+  <c-base-button type="fill" [isSubmitting]="isLoading" (click)="onClick()">
+    Enter raw text
+  </c-base-button>
+</div>
+
+<ng-template #enter_form>
+  <textarea name="raw" [(ngModel)]="text"></textarea>
+</ng-template>

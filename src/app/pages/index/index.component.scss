@@ -12,12 +12,46 @@ main {
   .viewer {
     position: relative;
     flex: 3;
-    .no_file {
+    &.exists_viewer {
+      max-width: calc(100% - 1em - 300px);
+    }
+    .getting_started {
       display: flex;
       justify-content: center;
       align-items: center;
+      gap: 2em;
       width: 100%;
       height: 100%;
+      > *:not(.or) {
+        min-width: 424px;
+      }
+      .or {
+        position: relative;
+        width: 2em;
+        color: #595959;
+        font-weight: bold;
+        user-select: none;
+        span {
+          position: absolute;
+          inset: 0;
+          display: inline-table;
+          margin: auto;
+          padding: 0.5em 0 0.6em;
+          text-align: center;
+          background-color: #0b0b13;
+          z-index: 2;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          width: 0.5px;
+          height: 300px;
+          margin: auto;
+          background-color: #595959;
+          z-index: 1;
+        }
+      }
     }
     button {
       position: absolute;

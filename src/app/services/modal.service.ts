@@ -8,7 +8,7 @@ import { ModalBase, ModalType } from "../components/common/modal/modal-base"
 @Injectable({
   providedIn: "root",
 })
-export class DialogService<M extends ModalBase> {
+export class ModalService<M extends ModalBase> {
   // biome-ignore format:
   constructor(
     protected dialog: Dialog,
@@ -24,7 +24,10 @@ export class DialogService<M extends ModalBase> {
     },
   ): DialogRef {
     const data = type
-    data.context.content = this.sanitizer.bypassSecurityTrustHtml(data.context.content as string)
+
+    if (typeof data.context.content === "string" && data.context.content[0] === "<") {
+      data.context.content = this.sanitizer.bypassSecurityTrustHtml(data.context.content as string)
+    }
 
     return this.dialog.open<unknown, ModalType>(modalComponent, {
       data,

@@ -30,7 +30,8 @@ type ConfirmModal = {
 type ActionModal = {
   templateType: "action"
   context: {
-    content: string | SafeHtml
+    title?: string
+    content: string | SafeHtml | TemplateRef<null>
     btnText: string
   }
 }
@@ -45,6 +46,7 @@ export abstract class ModalBase implements AfterViewInit {
   @ViewChild("simple_t", { read: TemplateRef }) simpleTemplate!: TemplateRef<ModalType>
   @ViewChild("confirm_t", { read: TemplateRef }) confirmTemplate!: TemplateRef<ModalType>
   @ViewChild("action_t", { read: TemplateRef }) actionTemplate!: TemplateRef<ModalType>
+  @ViewChild("action_container", { read: ViewContainerRef }) actionContainer!: ViewContainerRef
 
   leaving = false
   closeEvent?: CloseEvent = undefined
@@ -74,6 +76,11 @@ export abstract class ModalBase implements AfterViewInit {
         break
     }
     this.container.createEmbeddedView(template, this.data)
+    this.cd.detectChanges()
+
+    if (this.data.context.content instanceof TemplateRef) {
+      this.actionContainer.createEmbeddedView(this.data.context.content)
+    }
 
     this.cd.detectChanges()
   }
@@ -90,5 +97,9 @@ export abstract class ModalBase implements AfterViewInit {
     if (event.toState === "hidden") {
       this.dialogRef.close(this.closeEvent)
     }
+  }
+
+  isString(value: unknown) {
+    return typeof value === "string"
   }
 }

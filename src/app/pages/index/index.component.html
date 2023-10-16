@@ -1,16 +1,18 @@
 <main>
-  <div class="viewer">
-    <div *ngIf="noFile" class="no_file">
-      <c-open-file (changed)="onFileSelect($event)" />
+  <div class="viewer" [class.exists_viewer]="existsViewer">
+    <div *ngIf="!existsViewer" class="getting_started">
+      <c-open-file (changed)="renderChart($event)"></c-open-file>
+      <div class="or"><span>OR</span></div>
+      <c-input-directly (changed)="renderChart($event)"></c-input-directly>
     </div>
-    <ng-container *ngIf="!noFile">
+    <ng-container *ngIf="existsViewer">
       <c-chart [data]="klineSource" />
       <button class="reset" (click)="onClose()">
         <fa-icon icon="times" size="lg" style="color: #aeb0b7;"></fa-icon>
       </button>
     </ng-container>
   </div>
-  <div class="side">
+  <div *ngIf="existsViewer" class="side">
     <c-preference></c-preference>
   </div>
 </main>
