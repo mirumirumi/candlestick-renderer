@@ -9,12 +9,11 @@ import { PreferenceState, PreferenceStore } from "./preference.store"
   providedIn: "root",
 })
 export class PreferenceQuery extends Query<PreferenceState> {
-  constructor(protected override store: PreferenceStore) {
+  // biome-ignore format:
+  constructor(
+    protected override store: PreferenceStore,
+  ) {
     super(store)
-  }
-
-  raw(): PreferenceState {
-    return this.getValue()
   }
 
   selectYAxis(): Observable<YAxisType> {

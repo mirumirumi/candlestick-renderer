@@ -23,7 +23,8 @@ import { PreferenceComponent } from "./components/features/preference/preference
 import { FooterComponent } from "./components/layouts/footer/footer.component"
 import { HeaderComponent } from "./components/layouts/header/header.component"
 import { IndexComponent } from "./pages/index/index.component"
-import { RouterModule } from "./router/routes"
+import { RouterModule } from "./router/routes";
+import { CheckboxComponent } from './components/common/form/checkbox/checkbox.component'
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { RouterModule } from "./router/routes"
     SwitchComponent,
     SelectBoxComponent,
     InputDirectlyComponent,
+    CheckboxComponent,
   ],
   imports: [
     BrowserModule,

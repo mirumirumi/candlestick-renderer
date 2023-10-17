@@ -21,7 +21,7 @@ const createInitialState = (): PreferenceState => {
 @Injectable({
   providedIn: "root",
 })
-@StoreConfig({ name: "preference" })
+@StoreConfig({ name: "Preference" })
 export class PreferenceStore extends Store<PreferenceState> {
   constructor() {
     super(createInitialState())

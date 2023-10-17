@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core"
 
-import { PreferenceStore } from "./preference.store"
-import { PreferenceState } from "./preference.store"
+import { PreferenceState, PreferenceStore } from "./preference.store"
 
 @Injectable({
   providedIn: "root",

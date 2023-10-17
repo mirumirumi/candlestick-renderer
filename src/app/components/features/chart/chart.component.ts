@@ -41,7 +41,7 @@ export class ChartComponent implements OnInit, OnDestroy {
     this.chart.setPriceVolumePrecision(prePrice, preVol)
 
     // Load preferences
-    const preference = this.preferenceQuery.raw()
+    const preference = this.preferenceQuery.getValue()
     let paneIdVolumePane: string
     this.chart.createIndicator({ name: "MA", calcParams: [5, 10, 20], visible: preference.mas }, false, {
       id: "candle_pane",

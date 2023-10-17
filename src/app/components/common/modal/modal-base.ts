@@ -11,6 +11,10 @@ import {
 } from "@angular/core"
 import { SafeHtml } from "@angular/platform-browser"
 
+import { AskAgainQuery } from "../../../states/ask-again.query"
+import { AskAgainService } from "../../../states/ask-again.service"
+import { AskAgainState } from "../../../states/ask-again.store"
+
 type SimpleModal = {
   templateType: "simple"
   context: {
@@ -24,6 +28,10 @@ type ConfirmModal = {
   context: {
     content: string | SafeHtml
     btnText: string
+    askAgain?: {
+      text?: string
+      stateKey: string
+    }
   }
 }
 
@@ -50,16 +58,19 @@ export abstract class ModalBase implements AfterViewInit {
 
   leaving = false
   closeEvent?: CloseEvent = undefined
+  isAskAgain!: boolean
 
   constructor(
     @Inject(DIALOG_DATA) protected data: ModalType,
     protected dialogRef: DialogRef<CloseEvent>,
     protected cd: ChangeDetectorRef,
+    protected askAgainQuery: AskAgainQuery,
+    protected askAgainService: AskAgainService,
   ) {
+    this.dialogRef.backdropClick.subscribe(() => this.close())
     this.dialogRef.keydownEvents.subscribe((e: KeyboardEvent) => {
       if (e.key === "Escape") this.close()
     })
-    this.dialogRef.backdropClick.subscribe(() => this.close())
   }
 
   ngAfterViewInit() {
@@ -70,6 +81,9 @@ export abstract class ModalBase implements AfterViewInit {
         break
       case "confirm":
         template = this.confirmTemplate
+        if (this.data.context.askAgain) {
+          this.isAskAgain = this.askAgainQuery.getValue()[this.data.context.askAgain.stateKey as keyof AskAgainState]
+        }
         break
       case "action":
         template = this.actionTemplate

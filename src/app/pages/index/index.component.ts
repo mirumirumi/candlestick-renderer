@@ -4,6 +4,7 @@ import { Component } from "@angular/core"
 import { BaseModalComponent } from "../../components/common/modal/base-modal/base-modal.component"
 import { ModalService } from "../../services/modal.service"
 import { KLineSource } from "../../shared/types"
+import { AskAgainQuery } from "../../states/ask-again.query"
 
 @Component({
   selector: "index",
@@ -18,6 +19,7 @@ export class IndexComponent {
   // biome-ignore format:
   constructor(
     protected modalService: ModalService<BaseModalComponent>,
+    protected askAgainQuery: AskAgainQuery,
   ) {}
 
   renderChart(klineSource: KLineSource) {
@@ -26,15 +28,23 @@ export class IndexComponent {
   }
 
   onClose() {
+    if (!this.askAgainQuery.getValue().closeChart) {
+      this.onConfirm()
+      return
+    }
+
     this.dialogRef = this.modalService.open(BaseModalComponent, {
       templateType: "confirm",
       context: {
         content: "Are you sure you want to close?",
         btnText: "Yes",
+        askAgain: {
+          stateKey: "closeChart",
+        },
       },
     })
     this.dialogRef.closed.subscribe((e) => {
-      if (e) this.onConfirm()
+      if (e === "OK") this.onConfirm()
     })
   }
 

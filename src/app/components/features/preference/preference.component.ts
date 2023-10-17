@@ -28,7 +28,7 @@ export class PreferenceComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const preference = this.preferenceQuery.raw()
+    const preference = this.preferenceQuery.getValue()
     switch (preference.yAxis) {
       case YAxisType.Normal:
         this.yAxisIndex = 0

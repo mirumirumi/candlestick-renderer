@@ -1,0 +1,6 @@
+<label [for]="id">
+  <input type="checkbox" [id]="id" [checked]="isChecked" (change)="toggle()">
+  <span>
+    <ng-content></ng-content>
+  </span>
+</label>

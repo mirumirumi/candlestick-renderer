@@ -1,0 +1,16 @@
+import { Injectable } from "@angular/core"
+import { Query } from "@datorama/akita"
+
+import { AskAgainState, AskAgainStore } from "./ask-again.store"
+
+@Injectable({
+  providedIn: "root",
+})
+export class AskAgainQuery extends Query<AskAgainState> {
+  // biome-ignore format:
+  constructor(
+    protected override store: AskAgainStore,
+  ) {
+    super(store)
+  }
+}

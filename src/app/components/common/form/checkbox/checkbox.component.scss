@@ -1,0 +1,45 @@
+label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 0.97em;
+  cursor: pointer;
+  input {
+    display: inline-block;
+    width: 0.905em;
+    height: 0.9em;
+    margin: 0;
+    padding: 0;
+    border-radius: 3px;
+    background-color: var(--color-text-white);
+    appearance: none;
+    cursor: pointer;
+    transition: all 0.07s ease;
+    &::after {
+      position: absolute;
+      content: "";
+      display: inline-block;
+      width: 0.8em;
+      height: 0.9em;
+      margin-top: 0.09em;
+      background-image: none;
+      background-repeat: no-repeat;
+    }
+    &:checked {
+      border-color: var(--color-primary);
+      background-color: var(--color-primary);
+      &::after {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpolyline fill='none' stroke='%23fff' stroke-width='3' points='2,7.3 7.3,12.7 18,2'/%3e%3c/svg%3e");
+      }
+    }
+    &:disabled {
+      pointer-events: none;
+      filter: none;
+      opacity: 0.5;
+    }
+  }
+  span {
+    display: inline-block;
+    margin: 0 0 0.13em 0.7em;
+  }
+}

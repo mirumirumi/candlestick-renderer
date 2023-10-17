@@ -23,7 +23,12 @@
       margin: 0.3em auto 0.9em;
       font-size: 0.93em;
       &.simple {}
-      &.confirm {}
+      &.confirm {
+        + .ask_again {
+          margin: 1em auto 1em 0.5em;
+          font-size: 0.93em;
+        }
+      }
       &.action {
         display: flex;
         flex-direction: column;
