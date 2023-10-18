@@ -18,7 +18,8 @@ export class TooltipService {
   @Input() position: "above" | "below" = "below" // UNIMPLEMENTED!
 
   showTooltipSubject = new Subject<TooltipData>()
-  overlayRef!: OverlayRef
+  mouseMoveListener: ((event: MouseEvent) => void) | null = null
+  overlayRef!: OverlayRef | null
 
   constructor(
     // biome-ignore format:
@@ -35,7 +36,16 @@ export class TooltipService {
   }
 
   close() {
-    this.overlayRef.detach()
+    if (this.overlayRef) {
+      this.overlayRef.detach()
+      this.overlayRef = null
+    }
+
+    // Securely hide tooltips
+    if (this.mouseMoveListener) {
+      document.removeEventListener("mousemove", this.mouseMoveListener)
+      this.mouseMoveListener = null
+    }
   }
 
   protected _show(message: string, origin: HTMLElement) {
@@ -66,6 +76,20 @@ export class TooltipService {
 
     const tooltipPortal = new ComponentPortal(TooltipComponent, null, childInjector)
     overlayRef.attach(tooltipPortal)
+
+    // Securely hide tooltips
+    this.mouseMoveListener = (event: MouseEvent) => {
+      const rect = origin.getBoundingClientRect()
+      if (
+        event.clientX < rect.left ||
+        event.clientX > rect.right ||
+        event.clientY < rect.top ||
+        event.clientY > rect.bottom
+      ) {
+        this.close()
+      }
+    }
+    document.addEventListener("mousemove", this.mouseMoveListener)
 
     this.overlayRef = overlayRef
   }

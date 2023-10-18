@@ -1,4 +1,4 @@
-import { animate, state, style, transition, trigger } from "@angular/animations"
+import { animate, style, transition, trigger } from "@angular/animations"
 import { OverlayRef } from "@angular/cdk/overlay"
 import { Component, Inject } from "@angular/core"
 
