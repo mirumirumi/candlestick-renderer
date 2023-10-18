@@ -9,8 +9,8 @@ import { PreferenceState, PreferenceStore } from "./preference.store"
   providedIn: "root",
 })
 export class PreferenceQuery extends Query<PreferenceState> {
-  // biome-ignore format:
   constructor(
+    // biome-ignore format:
     protected override store: PreferenceStore,
   ) {
     super(store)

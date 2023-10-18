@@ -6,8 +6,8 @@ import { PreferenceState, PreferenceStore } from "./preference.store"
   providedIn: "root",
 })
 export class PreferenceService {
-  // biome-ignore format:
   constructor(
+    // biome-ignore format:
     protected preferenceStore: PreferenceStore,
   ) {}
 

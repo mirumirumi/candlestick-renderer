@@ -13,8 +13,8 @@ import { FileData, KLineSource } from "../../../shared/types"
 export class OpenFileComponent {
   @Output() changed = new EventEmitter<KLineSource>()
 
-  // biome-ignore format:
   constructor(
+    // biome-ignore format:
     protected parseFileService: ParseFileService,
     protected toastService: ToastService,
   ) {}

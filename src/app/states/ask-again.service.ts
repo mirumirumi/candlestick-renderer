@@ -6,8 +6,8 @@ import { AskAgainState, AskAgainStore } from "./ask-again.store"
   providedIn: "root",
 })
 export class AskAgainService {
-  // biome-ignore format:
   constructor(
+    // biome-ignore format:
     protected askAgainStore: AskAgainStore,
   ) {}
 

@@ -21,8 +21,8 @@ export class PreferenceComponent implements OnInit {
   masValue!: boolean
   volumePaneValue!: boolean
 
-  // biome-ignore format:
   constructor(
+    // biome-ignore format:
     protected preferenceQuery: PreferenceQuery,
     protected preferenceService: PreferenceService,
   ) {}

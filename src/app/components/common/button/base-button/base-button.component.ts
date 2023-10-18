@@ -24,8 +24,8 @@ export class BaseButtonComponent implements OnInit, AfterViewInit {
 
   @ViewChild("button") button!: ElementRef<HTMLButtonElement>
 
-  // biome-ignore format:
   constructor(
+    // biome-ignore format:
     protected cd: ChangeDetectorRef,
   ) {}
 

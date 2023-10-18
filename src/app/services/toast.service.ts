@@ -5,8 +5,8 @@ import { DomSanitizer } from "@angular/platform-browser"
   providedIn: "root",
 })
 export class ToastService {
-  // biome-ignore format:
   constructor(
+    // biome-ignore format:
     protected sanitizer: DomSanitizer,
   ) {}
 

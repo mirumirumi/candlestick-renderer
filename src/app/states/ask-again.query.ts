@@ -7,8 +7,8 @@ import { AskAgainState, AskAgainStore } from "./ask-again.store"
   providedIn: "root",
 })
 export class AskAgainQuery extends Query<AskAgainState> {
-  // biome-ignore format:
   constructor(
+    // biome-ignore format:
     protected override store: AskAgainStore,
   ) {
     super(store)

@@ -1,0 +1,33 @@
+div {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0.9em;
+  padding: 0.23em 0.7em 0.33em;
+  font-size: 0.63em;
+  color: var(--color-text-white);
+  border-radius: 5px;
+  background-color: #434343;
+  box-shadow: var(--box-shadow);
+  z-index: 5;
+  &::before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 7px solid transparent;
+    border-bottom-color: #434343;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-bottom-color: #434343;
+  }
+}

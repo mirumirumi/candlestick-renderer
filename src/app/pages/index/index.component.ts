@@ -3,6 +3,7 @@ import { Component } from "@angular/core"
 
 import { BaseModalComponent } from "../../components/common/modal/base-modal/base-modal.component"
 import { ModalService } from "../../services/modal.service"
+import { TooltipService } from "../../services/tooltip.service"
 import { KLineSource } from "../../shared/types"
 import { AskAgainQuery } from "../../states/ask-again.query"
 
@@ -16,10 +17,11 @@ export class IndexComponent {
   dialogRef!: DialogRef
   existsViewer = false
 
-  // biome-ignore format:
   constructor(
+    // biome-ignore format:
     protected modalService: ModalService<BaseModalComponent>,
     protected askAgainQuery: AskAgainQuery,
+    protected tooltipService: TooltipService,
   ) {}
 
   renderChart(klineSource: KLineSource) {
@@ -50,5 +52,13 @@ export class IndexComponent {
 
   onConfirm() {
     this.existsViewer = false
+  }
+
+  showTooltip(e: MouseEvent) {
+    this.tooltipService.show("Close this chart", e.currentTarget as HTMLButtonElement)
+  }
+
+  hideTooltip() {
+    this.tooltipService.close()
   }
 }

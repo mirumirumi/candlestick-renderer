@@ -28,8 +28,8 @@ export class ChartComponent implements OnInit, OnDestroy {
   chart!: Chart
   onResize = debounce(300, () => this.chart.resize())
 
-  // biome-ignore format:
   constructor(
+    // biome-ignore format:
     protected preferenceQuery: PreferenceQuery,
   ) {}
 

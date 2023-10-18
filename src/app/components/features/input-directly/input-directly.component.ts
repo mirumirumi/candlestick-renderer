@@ -21,8 +21,8 @@ export class InputDirectlyComponent {
   dialogRef!: DialogRef
   isLoading = false
 
-  // biome-ignore format:
   constructor(
+    // biome-ignore format:
     protected modalService: ModalService<BaseModalComponent>,
     protected parseFileService: ParseFileService,
     protected toastService: ToastService,

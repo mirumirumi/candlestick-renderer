@@ -7,7 +7,7 @@
     </div>
     <ng-container *ngIf="existsViewer">
       <c-chart [data]="klineSource" />
-      <button class="reset" (click)="onClose()">
+      <button class="reset" (click)="onClose()" (mouseenter)="showTooltip($event)" (mouseleave)="hideTooltip()">
         <fa-icon icon="times" size="lg" style="color: #aeb0b7;"></fa-icon>
       </button>
     </ng-container>

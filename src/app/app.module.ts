@@ -24,7 +24,8 @@ import { FooterComponent } from "./components/layouts/footer/footer.component"
 import { HeaderComponent } from "./components/layouts/header/header.component"
 import { IndexComponent } from "./pages/index/index.component"
 import { RouterModule } from "./router/routes";
-import { CheckboxComponent } from './components/common/form/checkbox/checkbox.component'
+import { CheckboxComponent } from './components/common/form/checkbox/checkbox.component';
+import { TooltipComponent } from './components/common/others/tooltip/tooltip.component'
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CheckboxComponent } from './components/common/form/checkbox/checkbox.co
     SelectBoxComponent,
     InputDirectlyComponent,
     CheckboxComponent,
+    TooltipComponent,
   ],
   imports: [
     BrowserModule,

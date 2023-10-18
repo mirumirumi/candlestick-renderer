@@ -9,8 +9,8 @@ import { ModalBase, ModalType } from "../components/common/modal/modal-base"
   providedIn: "root",
 })
 export class ModalService<M extends ModalBase> {
-  // biome-ignore format:
   constructor(
+    // biome-ignore format:
     protected dialog: Dialog,
     protected sanitizer: DomSanitizer,
   ) {}
