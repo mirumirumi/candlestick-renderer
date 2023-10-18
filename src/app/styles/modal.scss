@@ -1,8 +1,9 @@
+@import "./global";
+
 /* .xxx  { Custom class applied here by `panelClass` */
 .cdk-dialog-container {
   .modal_body {
     position: relative;
-    width: 555px;
     margin: auto;
     padding: 0.9em 1.3em 0.5em;
     color: var(--color-text);
@@ -13,6 +14,10 @@
       top: 1.9em;
       right: 2.3em;
       bottom: auto;
+      @include mobile {
+        top: 1.2em;
+        right: 1.25em;
+      }
     }
     .title {
       margin-bottom: 1em;

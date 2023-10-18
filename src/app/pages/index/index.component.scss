@@ -24,6 +24,9 @@ main {
       height: 100%;
       > *:not(.or) {
         min-width: 424px;
+        @media screen and (width <= 768px) {
+          min-width: 0;
+        }
       }
       .or {
         position: relative;
@@ -51,6 +54,12 @@ main {
           background-color: #595959;
           z-index: 1;
         }
+        @media screen and (width <= 768px) {
+          display: none;
+        }
+      }
+      @media screen and (width <= 768px) {
+        flex-direction: column;
       }
     }
     button {

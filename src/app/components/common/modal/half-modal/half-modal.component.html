@@ -1,4 +1,5 @@
-<div class="modal_body half_modal" [@show]="leaving ? 'hidden' : 'shown'" (@show.done)="animationDone($event)">
+<div class="modal_body half_modal" [style.height]="halfModalHeight" [@show]="leaving ? 'hidden' : 'shown'"
+  (@show.done)="animationDone($event)">
   <button class="reset" (click)="close()">
     <fa-icon icon="times" size="xl"></fa-icon>
   </button>
@@ -6,7 +7,7 @@
 </div>
 
 <ng-template #simple_t let-item="context">
-  <div class="title" role="heading">
+  <div *ngIf="item.title" class="title" role="heading">
     {{ item.title }}
   </div>
   <div class="content simple" [innerHTML]="item.content">

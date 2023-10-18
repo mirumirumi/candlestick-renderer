@@ -3,10 +3,13 @@
 </div>
 
 <ng-template #confirm_t let-item="context">
+  <div *ngIf="item.title" class="title" role="heading">
+    {{ item.title }}
+  </div>
   <div class="content confirm" [innerHTML]="item.content">
   </div>
   <div *ngIf="item.askAgain" class="ask_again">
-    <c-checkbox [isChecked]="!isAskAgain" (changed)="askAgainService.update(item.askAgain.stateKey, $event)">
+    <c-checkbox [isChecked]="!isAskAgain" (changed)="askAgainService.update(item.askAgain.stateKey, !$event)">
       {{ isString(item.askAgain) ? item.askAgain.text : "Don't ask me again" }}
     </c-checkbox>
   </div>

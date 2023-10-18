@@ -15,17 +15,21 @@ import { AskAgainQuery } from "../../../states/ask-again.query"
 import { AskAgainService } from "../../../states/ask-again.service"
 import { AskAgainState } from "../../../states/ask-again.store"
 
+// Only half-modal
 type SimpleModal = {
   templateType: "simple"
   context: {
-    title: string
+    title?: string
     content: string | SafeHtml
+    // Want to dynamically get only the actual height to be rendered
+    height?: number
   }
 }
 
 type ConfirmModal = {
   templateType: "confirm"
   context: {
+    title?: string
     content: string | SafeHtml
     btnText: string
     askAgain?: {
@@ -59,6 +63,7 @@ export abstract class ModalBase implements AfterViewInit {
   leaving = false
   closeEvent?: CloseEvent = undefined
   isAskAgain!: boolean
+  halfModalHeight!: string
 
   constructor(
     @Inject(DIALOG_DATA) protected data: ModalType,
@@ -78,6 +83,9 @@ export abstract class ModalBase implements AfterViewInit {
     switch (this.data.templateType) {
       case "simple":
         template = this.simpleTemplate
+        if (this.data.context.height) {
+          this.halfModalHeight = `${this.data.context.height}svh !important`
+        }
         break
       case "confirm":
         template = this.confirmTemplate

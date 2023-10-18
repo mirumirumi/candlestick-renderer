@@ -26,6 +26,10 @@
   .cdk-overlay-pane {
     position: relative;
     pointer-events: auto;
+    &:has(.cdk-dialog-container) {
+      width: 97%;
+      max-width: 555px;
+    }
   }
   .cdk-overlay-connected-position-bounding-box {
     position: absolute;
