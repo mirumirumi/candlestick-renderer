@@ -1,0 +1,34 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+    
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.16.1
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ap-northeast-1
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Install npm packages
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy
+        run: |
+          aws s3 sync --region ap-northeast-1 dist/ s3://mirumime-prd-mirumi-me/apps/candlestick-renderer/ --cache-control "max-age=31536000"
+          aws cloudfront create-invalidation --distribution-id E1BCJQQZ2TTVQV --paths "/apps/candlestick-renderer/*"
