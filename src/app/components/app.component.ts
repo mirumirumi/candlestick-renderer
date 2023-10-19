@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
         context: {
           title: "Mobile (or Tablet) detected!",
           content: "This site is intended for PC use only. Please note that the screen may not display properly.",
-          height: 27,
+          height: 33,
         },
       })
       localStorage.setItem("mobile-detected", "true")

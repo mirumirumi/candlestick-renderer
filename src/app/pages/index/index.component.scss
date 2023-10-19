@@ -79,10 +79,17 @@ main {
         opacity: 1;
       }
     }
+    @media screen and (width <= 768px) {
+      padding-top: 1.3em;
+      padding-bottom: 1.3em;
+    }
   }
   .side {
     flex: 1;
     padding: 0.1em 0.9em;
     max-width: 300px;
+  }
+  @media screen and (width <= 768px) {
+    height: auto;
   }
 }
