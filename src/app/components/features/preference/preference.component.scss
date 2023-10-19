@@ -1,5 +1,5 @@
 .group {
-  padding: 0.7em 1.3em;
+  padding: 0.7em 0;
   border: solid 0.79px var(--color-gray);
   border-left: none;
   border-right: none;
@@ -15,11 +15,9 @@
     align-items: center;
     margin: 0.5em auto;
     div {
-      padding-bottom: 0.05em;
+      padding: 0 1.3em 0.05em 0;
       font-size: 0.8em;
-    }
-    c-select-box {
-
+      text-align: right;
     }
   }
 }
