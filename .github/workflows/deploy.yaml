@@ -31,4 +31,4 @@ jobs:
       - name: Deploy
         run: |
           aws s3 sync --region ap-northeast-1 dist/ s3://mirumime-prd-mirumi-me/apps/candlestick-renderer/ --cache-control "max-age=31536000"
-          aws cloudfront create-invalidation --distribution-id E1BCJQQZ2TTVQV --paths "/apps/candlestick-renderer/*"
+          aws cloudfront create-invalidation --distribution-id E1UPWIMHFP5TEC --paths "/apps/candlestick-renderer/*"
