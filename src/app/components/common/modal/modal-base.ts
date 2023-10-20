@@ -1,5 +1,6 @@
 import { AnimationEvent } from "@angular/animations"
 import { DIALOG_DATA, DialogRef } from "@angular/cdk/dialog"
+import { Platform } from "@angular/cdk/platform"
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -70,6 +71,7 @@ export abstract class ModalBase implements AfterViewInit {
     protected cd: ChangeDetectorRef,
     protected askAgainQuery: AskAgainQuery,
     protected askAgainService: AskAgainService,
+    protected platform: Platform,
   ) {
     this.dialogRef.backdropClick.subscribe(() => this.close())
     this.dialogRef.keydownEvents.subscribe((e: KeyboardEvent) => {
