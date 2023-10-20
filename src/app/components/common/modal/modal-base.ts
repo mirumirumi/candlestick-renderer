@@ -21,7 +21,6 @@ type SimpleModal = {
   context: {
     title?: string
     content: string | SafeHtml
-    // Want to dynamically get only the actual height to be rendered
     height?: number
   }
 }
@@ -63,7 +62,7 @@ export abstract class ModalBase implements AfterViewInit {
   leaving = false
   closeEvent?: CloseEvent = undefined
   isAskAgain!: boolean
-  halfModalHeight!: string
+  halfModalHeight = "auto"
 
   constructor(
     @Inject(DIALOG_DATA) protected data: ModalType,

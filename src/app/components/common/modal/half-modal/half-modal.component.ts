@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from "@angular/animations"
-import { Component } from "@angular/core"
+import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core"
 
 import { ModalBase } from "../modal-base"
 
@@ -15,4 +15,17 @@ import { ModalBase } from "../modal-base"
     ]),
   ],
 })
-export class HalfModalComponent extends ModalBase {}
+export class HalfModalComponent extends ModalBase implements AfterViewInit {
+  @ViewChild("modal") modal!: ElementRef<HTMLDivElement>
+
+  override ngAfterViewInit() {
+    super.ngAfterViewInit()
+
+    if (this.halfModalHeight === "auto") {
+      this.halfModalHeight = `${(this.modal.nativeElement.offsetHeight + 1).toString()}px`
+    }
+    this.modal.nativeElement.style.opacity = "1"
+
+    this.cd.detectChanges()
+  }
+}
