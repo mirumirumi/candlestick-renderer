@@ -41,6 +41,7 @@ export class FooterComponent implements OnInit {
         context: {
           title: "Privacy Policy and Terms of Use",
           content: statement,
+          height: 73,
         },
       },
       { autoFocus: "first-heading" },

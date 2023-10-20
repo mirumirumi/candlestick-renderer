@@ -1,4 +1,4 @@
-<button [type]="submit ? 'submit' : 'button'" [class]="{
+<button #button [type]="submit ? 'submit' : 'button'" [class]="{
     btn_primary: type === 'fill',
     btn_outline_primary: type === 'outline',
     btn_text_only: type === 'text',
@@ -8,7 +8,7 @@
     color,
     borderColor,
     backgroundColor,
-  }" [disabled]="isSubmitting || disabled" #button (click)="onClick($event)">
+  }" [disabled]="isSubmitting || disabled" (click)="onClick($event)">
   <c-spinner *ngIf="isSubmitting; else elseBlock" [color]="spinnerColor || 'var(--color-text-white)'" />
   <ng-template #elseBlock>
     <ng-content></ng-content>

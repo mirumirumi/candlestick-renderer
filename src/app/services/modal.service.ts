@@ -23,7 +23,7 @@ export class ModalService<M extends ModalBase> {
       autoFocus?: AutoFocusTarget
     },
   ): DialogRef {
-    const data = type
+    const data = { ...type }
 
     if (typeof data.context.content === "string" && data.context.content[0] === "<") {
       data.context.content = this.sanitizer.bypassSecurityTrustHtml(data.context.content as string)

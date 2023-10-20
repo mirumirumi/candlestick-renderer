@@ -1,4 +1,4 @@
-<div class="modal_body half_modal" [style.height]="halfModalHeight" [@show]="leaving ? 'hidden' : 'shown'"
+<div #modal class="modal_body half_modal" [style.height]="halfModalHeight" [@show]="leaving ? 'hidden' : 'shown'"
   (@show.done)="animationDone($event)">
   <button class="reset" (click)="close()">
     <fa-icon icon="times" size="xl"></fa-icon>
