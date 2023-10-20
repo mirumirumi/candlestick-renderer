@@ -22,7 +22,11 @@ export class HalfModalComponent extends ModalBase implements AfterViewInit {
     super.ngAfterViewInit()
 
     if (this.halfModalHeight === "auto") {
-      this.halfModalHeight = `${(this.modal.nativeElement.offsetHeight + 1).toString()}px`
+      let plus = 1
+      if (this.platform.IOS) {
+        plus += 10
+      }
+      this.halfModalHeight = `${(this.modal.nativeElement.offsetHeight + plus).toString()}px`
     }
     this.modal.nativeElement.style.opacity = "1"
 
