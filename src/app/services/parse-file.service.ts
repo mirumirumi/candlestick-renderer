@@ -23,6 +23,12 @@ export class ParseFileService {
     // json: Match the key against the synonyms
     // csv, tsv, txt: As is (TOHLCV is assumed to be in order)
 
+    if (file.ext !== "json") {
+      if (!/^[0-9,\s\[\]]+$/.test(file.value)) {
+        return new Err(new ParseError(`${file.name}.${file.ext}`))
+      }
+    }
+
     let result: KLineSource | Result<KLineSource, Error>
 
     switch (file.ext) {
@@ -54,7 +60,7 @@ export class ParseFileService {
     return new Ok(result!)
   }
 
-  protected json(value: string): KLineSource {
+  protected json(value: string): Result<KLineSource, Error> {
     // Initialize synonym mapping table
     for (const [canonical, aliases] of Object.entries(this.synonyms)) {
       for (const alias of aliases) {
@@ -62,7 +68,18 @@ export class ParseFileService {
       }
     }
 
-    return (JSON.parse(value) as Array<{ [key: string]: number }>).map((candle) => {
+    let json
+    try {
+      json = JSON.parse(value) as Array<{ [key: string]: number }>
+    } catch (err) {
+      return new Err(new ParseError("JSON parse error"))
+    }
+
+    if (!Array.isArray(json)) {
+      return new Err(new ParseError("JSON parse error (not array)"))
+    }
+
+    const finallyResult = json.map((candle) => {
       const result = {} as Candle
       for (const key in candle) {
         if (Object.prototype.hasOwnProperty.call(candle, key)) {
@@ -90,6 +107,19 @@ export class ParseFileService {
       }
       return result
     })
+
+    if (
+      !finallyResult[0] ||
+      !Object.prototype.hasOwnProperty.call(finallyResult[0]!, "timestamp") ||
+      !Object.prototype.hasOwnProperty.call(finallyResult[0]!, "open") ||
+      !Object.prototype.hasOwnProperty.call(finallyResult[0]!, "high") ||
+      !Object.prototype.hasOwnProperty.call(finallyResult[0]!, "low") ||
+      !Object.prototype.hasOwnProperty.call(finallyResult[0]!, "close")
+    ) {
+      return new Err(new ParseError("JSON object must have OHLC and timestamp keys"))
+    }
+
+    return new Ok(finallyResult)
   }
 
   protected csv(value: string): Result<KLineSource, Error> {
