@@ -14,7 +14,7 @@ describe("ParseFileService", () => {
     }
     public override synonymMapping: { [key: string]: string } = {}
 
-    public override json(value: string): KLineSource {
+    public override json(value: string): Result<KLineSource, Error> {
       return super.json(value)
     }
 
@@ -70,7 +70,7 @@ describe("ParseFileService", () => {
         volume: 233.359,
       },
     ]
-    expect(service.json(_1)).toEqual(_1_e)
+    expect(service.json(_1).val).toEqual(_1_e)
 
     const _2 = `[
       {
@@ -108,7 +108,7 @@ describe("ParseFileService", () => {
         volume: 233.359,
       },
     ]
-    expect(service.json(_2)).toEqual(_2_e)
+    expect(service.json(_2).val).toEqual(_2_e)
   })
 
   test("raw()", () => {})
