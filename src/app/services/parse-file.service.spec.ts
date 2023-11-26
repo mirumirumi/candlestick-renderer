@@ -1,4 +1,5 @@
 import { Result } from "ts-results"
+
 import { KLineSource } from "../shared/types"
 import { ParseFileService } from "./parse-file.service"
 
@@ -110,8 +111,6 @@ describe("ParseFileService", () => {
     ]
     expect(service.json(_2).val).toEqual(_2_e)
   })
-
-  test("raw()", () => {})
 
   test("extractKLineFromParsed()", () => {
     const _1 = [

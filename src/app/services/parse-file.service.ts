@@ -24,7 +24,7 @@ export class ParseFileService {
     // csv, tsv, txt: As is (TOHLCV is assumed to be in order)
 
     if (file.ext !== "json") {
-      if (!/^[0-9,\s\[\]]+$/.test(file.value)) {
+      if (!/^[0-9,\.\s\[\]]+$/.test(file.value)) {
         return new Err(new ParseError(`${file.name}.${file.ext}`))
       }
     }
@@ -143,7 +143,7 @@ export class ParseFileService {
   }
 
   protected raw(value: string): Result<KLineSource, Error> {
-    const parsed = Papa.parse(value, { delimiter: "," })
+    const parsed = Papa.parse(value)
     if (0 < parsed.errors.length) {
       return new Err(Error())
     }
@@ -162,6 +162,8 @@ export class ParseFileService {
         }),
       )
     } else if (value.includes(",")) {
+      result = parsed.data as Array<Array<string>>
+    } else if (value.includes("\t")) {
       result = parsed.data as Array<Array<string>>
     } else {
       return new Err(Error())
